@@ -4,13 +4,8 @@
 
 using namespace std;
 
-#include "Game.hpp"
 #include "Player.hpp"
-#include "Bot.hpp"
 
-int main()
-{
-    Game game;
-    game.Start();
-    return 0;
-}
+Player::Player():sea1(10, vector<string>(10)){}
+
+Player::~Player(){}
