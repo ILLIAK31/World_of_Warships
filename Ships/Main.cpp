@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
     Game game;
-    Player player;
+    Player* player = new Player();
     game.Start();
     return 0;
 }

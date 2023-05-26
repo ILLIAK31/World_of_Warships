@@ -4,7 +4,7 @@
 
 class Player : public Game
 {
-private:
+public:
 	vector<vector<string>> sea1;
 public:
 	Player();

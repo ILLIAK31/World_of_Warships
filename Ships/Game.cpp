@@ -22,8 +22,9 @@ void Game::Start()
 	{
 		cout << "\n\tAdd " << count_4x << " ship of size 4, "<< count_3x <<" ships of size 2, "<< count_2x << " ships of size 2 and " << count_x <<" ships of size 1\n" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\tEnter : ";
 		cin >> menu;
-		string color, symbol, rotation;
-		int x, y;
+		string color, symbol, rotation ;
+		int x;
+		char y;
 		if (menu == 1)
 		{
 			cout << "\n\tGive symbol (but without #) : ";
@@ -35,18 +36,23 @@ void Game::Start()
 			}
 			cout << "\n\tGive rotation (Verticale or Gorizontal) : ";
 			cin >> rotation;
-			if ((rotation != "Verticale") || (rotation != "Gorizontal"))
+			if ((rotation != "Verticale")&&(rotation != "Gorizontal"))
 			{
 				cout << "\n\tWrong rotation\n";
 				continue;
 			}
 			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
 			cin >> color;
-			//
+			if ((color != "Red") && (color != "Blue") && (color != "Green") && (color != "Yellow") && (color != "Purple") && (color != "White"))
+			{
+				cout << "\n\tWrong color\n";
+				continue;
+			}
 			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
-			cin >> x;
-			cout << "\n\tGive position of ship (1...10) : ";
 			cin >> y;
+			cout << "\n\tGive position of ship (1...10) : ";
+			cin >> x;
+			//
 			Ship_4x* obj = new Ship_4x(symbol,rotation,color);
 		}
 		else if (menu == 2)

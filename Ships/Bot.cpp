@@ -6,6 +6,6 @@ using namespace std;
 
 #include "Bot.hpp"
 
-Bot::Bot():sea2(10, vector<string>(10)){}
+Bot::Bot():sea2(13, vector<string>(13)){}
 
 Bot::~Bot(){}
