@@ -9,6 +9,6 @@ class Ship : public Player , public Bot
 private:
 	string color , rotation , symbol;
 public:
-	Ship(string color, string rotation,string symbol);
+	Ship(const string color,const string rotation,const string symbol);
 	~Ship();
 };

@@ -27,31 +27,24 @@ void Game::Start()
 		char y;
 		if (menu == 1)
 		{
-			cout << "\n\tGive symbol (but without #) : ";
+			cout << "\n\tGive symbol (but without # and _ ) : ";
 			cin >> symbol;
-			if ((symbol == "#") || (symbol.size() > 1))
-			{
-				cout << "\n\tWrong symbol\n";
+			if (Check_val_sym(symbol))
 				continue;
-			}
-			cout << "\n\tGive rotation (Verticale or Gorizontal) : ";
+			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
 			cin >> rotation;
-			if ((rotation != "Verticale")&&(rotation != "Gorizontal"))
-			{
-				cout << "\n\tWrong rotation\n";
+			if (Check_val_rot(rotation))
 				continue;
-			}
 			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
 			cin >> color;
-			if ((color != "Red") && (color != "Blue") && (color != "Green") && (color != "Yellow") && (color != "Purple") && (color != "White"))
-			{
-				cout << "\n\tWrong color\n";
+			if (Check_val_col(color))
 				continue;
-			}
 			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
 			cin >> y;
 			cout << "\n\tGive position of ship (1...10) : ";
 			cin >> x;
+			if (Check_val_xy(x,y,4,rotation))
+				continue;
 			//
 			Ship_4x* obj = new Ship_4x(symbol,rotation,color);
 		}
@@ -73,6 +66,45 @@ void Game::Start()
 			continue;
 		}
 	} while (count_ships != 0);
+}
+
+bool Game::Check_val_sym(const string sym)
+{
+	if ((sym == "#") || (sym.size() > 1) || (sym == "_"))
+	{
+		cout << "\n\tWrong symbol\n";
+		return true;
+	}
+	return false;
+}
+
+bool Game::Check_val_rot(const string rot)
+{
+	if ((rot != "V") && (rot != "G"))
+	{
+		cout << "\n\tWrong rotation\n";
+		return true;
+	}
+	return false;
+}
+
+bool Game::Check_val_col(const string col)
+{
+	if ((col != "Red") && (col != "Blue") && (col != "Green") && (col != "Yellow") && (col != "Purple") && (col != "White"))
+	{
+		cout << "\n\tWrong color\n";
+		return true;
+	}
+	return false;
+}
+
+bool Game::Check_val_xy(const int x, const char y,int type, const string rot)
+{
+	if ((x < 1) || (x > 10) || ((int(y) - 64) < 1) || ((int(y) - 64) > 10) || ((rot == "G") && ((x + (type - 1))>10)) || ((rot == "V") && (((int(y)-64) + (type - 1)) > 10)))
+	{
+		cout << "\n\tWrong x or y\n";
+		return true;
+	}
 }
 
 Game::~Game(){}
