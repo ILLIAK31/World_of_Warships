@@ -10,7 +10,7 @@ using namespace std;
 
 void Game::Start(Player* player)
 {
-	cout << "\n\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 2 , three ships of size 2 and four ships of size 1\n\n\n";
+	cout << "\n\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 3 , three ships of size 2 and four ships of size 1\n\n\n";
 	int menu;
 	do 
 	{
@@ -29,7 +29,7 @@ void Game::Start(Player* player)
 			cout << "\033[1;32m" << count_3x << "\033[0m";
 		else
 			cout << "\033[1;31m" << count_3x << "\033[0m";
-		cout << " ships of size 2, "; 
+		cout << " ships of size 3, "; 
 		if (count_2x != 0)
 			cout << "\033[1;32m" << count_2x << "\033[0m";
 		else
