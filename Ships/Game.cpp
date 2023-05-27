@@ -10,7 +10,7 @@ using namespace std;
 
 void Game::Start(Player* player)
 {
-	cout << "\n\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 3 , three ships of size 2 and four ships of size 1\n\n\n";
+	cout << "\n\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 3 , three ships of size 2 and four ships of size 1\n\t!!! Ships must be at least one square away from each other !!!\n\n\n";
 	int menu;
 	do 
 	{
