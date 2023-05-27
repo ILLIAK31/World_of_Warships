@@ -8,7 +8,7 @@ using namespace std;
 #include "Player.hpp"
 #include "Ship_4x.hpp"
 
-void Game::Start(Player* player)
+void Game::Start(Player* player,vector<Ship*>& data1)
 {
 	cout << "\n\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 3 , three ships of size 2 and four ships of size 1\n\t!!! Ships must be at least one square away from each other !!!\n\n\n";
 	int menu;
@@ -66,7 +66,7 @@ void Game::Start(Player* player)
 				continue;
 			Ship_4x* ship = new Ship_4x(symbol,rotation,color,x,y);
 			player->Add(ship,player);
-			//
+			data1.push_back(ship);
 			--count_ships;
 			--count_4x;
 		}

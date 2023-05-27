@@ -4,10 +4,11 @@ class Game
 {
 private:
 	friend class Player;
+	friend class Ship;
 	static int count_ships , count_4x , count_3x , count_2x , count_x;
 public:
 	Game()=default;
-	void Start(Player* player);
+	void Start(Player* player,vector<Ship*>& data1);
 	bool Check_val_sym(const string sym);
 	bool Check_val_rot(const string rot);
 	bool Check_val_col(const string col);
