@@ -3,12 +3,12 @@
 #include "Player.hpp"
 #include "Bot.hpp"
 
-class Ship : public Player , public Bot
+class Ship
 {
-	friend class Player;
 private:
 	string color , rotation , symbol;
 public:
 	Ship(const string color,const string rotation,const string symbol);
+	virtual void Add_Ship(Ship* ship);
 	~Ship();
 };

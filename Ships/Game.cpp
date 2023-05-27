@@ -5,64 +5,86 @@
 using namespace std;
 
 #include "Game.hpp"
-#include "Ship.hpp"
+#include "Player.hpp"
 #include "Ship_4x.hpp"
 
-int Game::count_ships = 10;
-int Game::count_4x = 1;
-int Game::count_3x = 2;
-int Game::count_2x = 3;
-int Game::count_x = 4;
-
-void Game::Start()
+void Game::Start(Player* player)
 {
-	cout << "\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 2 , three ships of size 2 and four ships of size 1\n";
+	cout << "\n\tGame Ships\n"<<"\tYou will be playing with bot\n\tYou must create 10 ships\n"<<"\tOne ship of size 4 , two ships of size 2 , three ships of size 2 and four ships of size 1\n\n\n";
 	int menu;
 	do 
 	{
-		cout << "\n\tAdd " << count_4x << " ship of size 4, "<< count_3x <<" ships of size 2, "<< count_2x << " ships of size 2 and " << count_x <<" ships of size 1\n" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\tEnter : ";
+		for (const auto row : player->Get_vec1()) {
+			for (const auto element : row)
+				cout << element;
+			cout << endl;
+		}
+		cout << "\n\n\tAdd ";
+		if (count_4x != 0)
+			cout << "\033[1;32m" << count_4x << "\033[0m";
+		else
+			cout << "\033[1;31m" << count_4x <<"\033[0m";
+		cout << " ship of size 4, "; 
+		if (count_3x != 0)
+			cout << "\033[1;32m" << count_3x << "\033[0m";
+		else
+			cout << "\033[1;31m" << count_3x << "\033[0m";
+		cout << " ships of size 2, "; 
+		if (count_2x != 0)
+			cout << "\033[1;32m" << count_2x << "\033[0m";
+		else
+			cout << "\033[1;31m" << count_2x << "\033[0m";
+		cout << " ships of size 2 and ";
+		if (count_x != 0)
+			cout << "\033[1;32m" << count_x << "\033[0m";
+		else
+			cout << "\033[1;31m" << count_x << "\033[0m";
+		cout << " ships of size 1\n" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\tEnter : ";
 		cin >> menu;
 		string color, symbol, rotation ;
 		int x;
 		char y;
-		if (menu == 1)
+		if ((menu == 1)&&(count_4x != 0))
 		{
 			cout << "\n\tGive symbol (but without # and _ ) : ";
 			cin >> symbol;
-			if (Check_val_sym(symbol))
+			if (player->Check_val_sym(symbol))
 				continue;
 			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
 			cin >> rotation;
-			if (Check_val_rot(rotation))
+			if (player->Check_val_rot(rotation))
 				continue;
 			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
 			cin >> color;
-			if (Check_val_col(color))
+			if (player->Check_val_col(color))
 				continue;
 			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
 			cin >> y;
 			cout << "\n\tGive position of ship (1...10) : ";
 			cin >> x;
-			if (Check_val_xy(x,y,4,rotation))
+			if (player->Check_val_xy(x,y,4,rotation,player))
 				continue;
-			//
 			Ship_4x* obj = new Ship_4x(symbol,rotation,color);
+			player->Add(obj);
+			//
+			--count_ships;
+			--count_4x;
 		}
-		else if (menu == 2)
+		else if ((menu == 2) && (count_3x != 0))
 		{
 			//
 		}
-		else if (menu == 3)
+		else if ((menu == 3) && (count_2x != 0))
 		{
 			//
 		}
-		else if (menu == 4)
+		else if ((menu == 4) && (count_x != 0))
 		{
 			//
 		}
 		else
 		{
-			cout << "\n\tWrong number\n";
+			cout << "\n\tWrong number\n\n";
 			continue;
 		}
 	} while (count_ships != 0);
@@ -72,7 +94,7 @@ bool Game::Check_val_sym(const string sym)
 {
 	if ((sym == "#") || (sym.size() > 1) || (sym == "_"))
 	{
-		cout << "\n\tWrong symbol\n";
+		cout << "\n\tWrong symbol\n\n";
 		return true;
 	}
 	return false;
@@ -82,7 +104,7 @@ bool Game::Check_val_rot(const string rot)
 {
 	if ((rot != "V") && (rot != "G"))
 	{
-		cout << "\n\tWrong rotation\n";
+		cout << "\n\tWrong rotation\n\n";
 		return true;
 	}
 	return false;
@@ -90,21 +112,80 @@ bool Game::Check_val_rot(const string rot)
 
 bool Game::Check_val_col(const string col)
 {
-	if ((col != "Red") && (col != "Blue") && (col != "Green") && (col != "Yellow") && (col != "Purple") && (col != "White"))
+	if ((col != "RED") && (col != "Blue") && (col != "Green") && (col != "Yellow") && (col != "Purple") && (col != "White"))
 	{
-		cout << "\n\tWrong color\n";
+		cout << "\n\tWrong color\n\n";
 		return true;
 	}
 	return false;
 }
 
-bool Game::Check_val_xy(const int x, const char y,int type, const string rot)
+bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Player* player)
 {
-	if ((x < 1) || (x > 10) || ((int(y) - 64) < 1) || ((int(y) - 64) > 10) || ((rot == "G") && ((x + (type - 1))>10)) || ((rot == "V") && (((int(y)-64) + (type - 1)) > 10)))
+	if (((y != 'A') && (y != 'B') && (y != 'C') && (y != 'D') && (y != 'E') && (y != 'F') && (y != 'G') && (y != 'H') && (y != 'I') && (y != 'J')) || (x < 1) || (x > 10) || ((int(y) - 64) < 1) || ((int(y) - 64) > 10) || ((rot == "G") && ((x + (type - 1))>10)) || ((rot == "V") && (((int(y)-64) + (type - 1)) > 10)))
 	{
-		cout << "\n\tWrong x or y\n";
+		cout << "\n\tWrong x or y\n\n";
 		return true;
 	}
+	bool res = false;
+	int x0 = x, y0 = int(y)-64 , h , w;
+	if(rot == "G")
+	{
+		h = 3;
+		w = type + 2;
+		if ((x - 1) >= 1)
+			--x0;
+		else
+			--w;
+		if (((int(y) - 64) - 1) >= 1)
+			--y0;
+		else
+			--h;
+		int x2 = x0-1 , y2 = y0-1;
+		for (int i = 0; i < h; ++i,++y2)
+		{
+			for (int j = 0; j < w; ++j,++x2)
+			{
+				if (player->Get_vec1()[x2][y2] != " ")
+					res = true;
+				if (player->Get_vec1()[x2 + 1][y2] == "|")
+					++x2;
+			}
+			x2 = x0 - 1;
+			if (player->Get_vec1()[x2][y2 + 1] == "-")
+				++y2;
+		}
+	}
+	else
+	{
+		h = type + 2;
+		w = 3;
+		if ((x - 1) >= 1)
+			--x0;
+		else
+			--w;
+		if (((int(y) - 64) - 1) >= 1)
+			--y0;
+		else
+			--h;
+		int x2 = x0 - 1, y2 = y0 - 1;
+		for (int i = 0; i < h; ++i, ++y2)
+		{
+			for (int j = 0; j < w; ++j, ++x2)
+			{
+				if (player->Get_vec1()[x2][y2] != " ")
+					res = true;
+				if (player->Get_vec1()[x2 + 1][y2] == "|")
+					++x2;
+			}
+			x2 = x0 - 1;
+			if (player->Get_vec1()[x2][y2 + 1] == "-")
+				++y2;
+		}
+	}
+	if (res)
+		return true;
+	return false;
 }
 
 Game::~Game(){}

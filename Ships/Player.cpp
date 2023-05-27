@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "Player.hpp"
+#include "Ship.hpp"
 
 Player::Player():sea1(13, vector<string>(13))
 {
@@ -21,8 +22,13 @@ Player::Player():sea1(13, vector<string>(13))
 		sea1[1][i] = "-";
 		sea1[12][i] = "-";
 	}
-	sea1[1][12] = "-";
-	sea1[12][12] = "-";
 }
+
+vector<vector<string>> Player::Get_vec1()
+{
+	return this->sea1;
+}
+
+void Player::Add(Ship* ship){} //
 
 Player::~Player(){}

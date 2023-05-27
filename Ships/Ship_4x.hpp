@@ -7,5 +7,6 @@ class Ship_4x : public Ship
 private:
 public:
 	Ship_4x(const string color,const string rotation,const string symbol);
+	void Add_Ship(Ship* ship)override;
 	~Ship_4x();
 };

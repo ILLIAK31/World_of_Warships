@@ -8,4 +8,6 @@ using namespace std;
 
 Ship_4x::Ship_4x(const string color, const string rotation, const string symbol):Ship(color,rotation,symbol){}
 
+void Ship_4x::Add_Ship(Ship* ship){}
+
 Ship_4x::~Ship_4x(){}
