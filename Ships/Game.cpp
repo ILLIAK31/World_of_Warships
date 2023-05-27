@@ -14,6 +14,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 	int menu;
 	do 
 	{
+		cout << endl;
 		for (const auto row : player->Get_vec1()) {
 			for (const auto element : row)
 				cout << element;

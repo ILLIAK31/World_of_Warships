@@ -10,7 +10,7 @@ private:
 	int x;
 	char y;
 public:
-	Ship(const string color,const string rotation,const string symbol,const int x , const char y);
+	Ship(const string symbol,const string rotation,const string color,const int x , const char y);
 	virtual void Add_Ship(Ship* ship,Player* player);
 	string Get_color();
 	string Get_rotation();

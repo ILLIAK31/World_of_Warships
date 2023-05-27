@@ -6,7 +6,7 @@ using namespace std;
 
 #include "Ship_4x.hpp"
 
-Ship_4x::Ship_4x(const string color, const string rotation, const string symbol,const int x , const char y):Ship(color,rotation,symbol,x,y){}
+Ship_4x::Ship_4x(const string symbol, const string rotation, const string color,const int x , const char y):Ship(symbol,rotation,color,x,y){}
 
 void Ship_4x::Add_Ship(Ship* ship,Player* player)
 {

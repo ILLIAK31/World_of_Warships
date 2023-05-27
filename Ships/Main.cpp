@@ -24,3 +24,21 @@ int main()
     game.Start(player,data1);
     return 0;
 }
+
+
+
+			/*
+			cout << data1[0]->Get_color() << data1[0]->Get_symbol();
+			for (const auto row : player->Get_vec1()) {
+				for (const auto element : row)
+				{
+					if((element == " ")||(element == "_"))
+						cout << " ";
+					else if(element == "1")
+						cout << "\033[1;" <<  data1[(stoi(element))-1]->Get_color()  << data1[(stoi(element)) - 1]->Get_symbol() << "\033[0m";
+					else
+						cout << element;
+
+				}
+				cout << endl;
+			}*/
