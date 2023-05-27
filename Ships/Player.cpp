@@ -24,14 +24,19 @@ Player::Player():sea1(13, vector<string>(13))
 	}
 }
 
-vector<vector<string>> Player::Get_vec1()
+vector<vector<string>>& Player::Get_vec1()
 {
 	return this->sea1;
 }
 
-void Player::Add(Ship* ship)
+void Player::Add(Ship* ship,Player* player)
 {
-	ship->Add_Ship();
+	ship->Add_Ship(ship,player);
+}
+
+int& Player::Get_Count()
+{
+	return this->count_player_ship;
 }
 
 Player::~Player(){}

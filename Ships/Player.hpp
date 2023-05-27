@@ -11,7 +11,8 @@ private:
 	static int count_player_ship;
 public:
 	Player();
-	vector<vector<string>> Get_vec1();
-	void Add(Ship* ship);
+	vector<vector<string>>& Get_vec1();
+	void Add(Ship* ship,Player* player);
+	int& Get_Count();
 	~Player();
 };

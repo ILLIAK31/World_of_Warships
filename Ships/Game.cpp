@@ -64,8 +64,8 @@ void Game::Start(Player* player)
 			cin >> x;
 			if (player->Check_val_xy(x,y,4,rotation,player))
 				continue;
-			Ship_4x* obj = new Ship_4x(symbol,rotation,color);
-			player->Add(obj);
+			Ship_4x* ship = new Ship_4x(symbol,rotation,color,x,y);
+			player->Add(ship,player);
 			//
 			--count_ships;
 			--count_4x;
@@ -134,7 +134,7 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 		w = type;
 		int x2 = x0 + 1, y2 = y0 + 1;
 		for (int i = 0; i < w; ++i,++x2)
-			if (player->Get_vec1()[x2][y2] != " ")
+			if (player->Get_vec1()[y2][x2] != " ")
 				res = true;
 	}
 	else
@@ -142,7 +142,7 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 		h = type;
 		int x2 = x0 + 1, y2 = y0 + 1;
 		for (int i = 0; i < h; ++i, ++y2)
-			if (player->Get_vec1()[x2][y2] != " ")
+			if (player->Get_vec1()[y2][x2] != " ")
 				res = true;
 	}
 	if (res)

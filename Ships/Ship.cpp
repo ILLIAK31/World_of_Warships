@@ -6,7 +6,7 @@ using namespace std;
 
 #include "Ship.hpp"
 
-Ship::Ship(const string color,const string rotation,const string symbol):rotation(rotation),symbol(symbol)
+Ship::Ship(const string color,const string rotation,const string symbol,const int x , const char y):rotation(rotation),symbol(symbol),x(x),y(y)
 {
 	if (color == "Red")
 		this->color = "31m";
@@ -22,6 +22,31 @@ Ship::Ship(const string color,const string rotation,const string symbol):rotatio
 		this->color = "37m";
 }
 
-void Ship::Add_Ship(){}
+void Ship::Add_Ship(Ship* ship,Player* player){}
+
+string Ship::Get_color()
+{
+	return this->color;
+}
+
+string Ship::Get_rotation()
+{
+	return this->rotation;
+}
+
+string Ship::Get_symbol()
+{
+	return this->symbol;
+}
+
+int Ship::Get_x()
+{
+	return this->x;
+}
+
+char Ship::Get_y()
+{
+	return this->y;
+}
 
 Ship::~Ship(){}
