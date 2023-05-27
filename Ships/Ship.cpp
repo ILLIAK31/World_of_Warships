@@ -22,6 +22,6 @@ Ship::Ship(const string color,const string rotation,const string symbol):rotatio
 		this->color = "37m";
 }
 
-void Ship::Add_Ship(Ship* ship){}
+void Ship::Add_Ship(){}
 
 Ship::~Ship(){}

@@ -9,6 +9,6 @@ private:
 	string color , rotation , symbol;
 public:
 	Ship(const string color,const string rotation,const string symbol);
-	virtual void Add_Ship(Ship* ship);
+	virtual void Add_Ship();
 	~Ship();
 };

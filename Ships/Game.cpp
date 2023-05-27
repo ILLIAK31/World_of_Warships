@@ -112,7 +112,7 @@ bool Game::Check_val_rot(const string rot)
 
 bool Game::Check_val_col(const string col)
 {
-	if ((col != "RED") && (col != "Blue") && (col != "Green") && (col != "Yellow") && (col != "Purple") && (col != "White"))
+	if ((col != "Red") && (col != "Blue") && (col != "Green") && (col != "Yellow") && (col != "Purple") && (col != "White"))
 	{
 		cout << "\n\tWrong color\n\n";
 		return true;
@@ -131,57 +131,19 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 	int x0 = x, y0 = int(y)-64 , h , w;
 	if(rot == "G")
 	{
-		h = 3;
-		w = type + 2;
-		if ((x - 1) >= 1)
-			--x0;
-		else
-			--w;
-		if (((int(y) - 64) - 1) >= 1)
-			--y0;
-		else
-			--h;
-		int x2 = x0-1 , y2 = y0-1;
-		for (int i = 0; i < h; ++i,++y2)
-		{
-			for (int j = 0; j < w; ++j,++x2)
-			{
-				if (player->Get_vec1()[x2][y2] != " ")
-					res = true;
-				if (player->Get_vec1()[x2 + 1][y2] == "|")
-					++x2;
-			}
-			x2 = x0 - 1;
-			if (player->Get_vec1()[x2][y2 + 1] == "-")
-				++y2;
-		}
+		w = type;
+		int x2 = x0 + 1, y2 = y0 + 1;
+		for (int i = 0; i < w; ++i,++x2)
+			if (player->Get_vec1()[x2][y2] != " ")
+				res = true;
 	}
 	else
 	{
-		h = type + 2;
-		w = 3;
-		if ((x - 1) >= 1)
-			--x0;
-		else
-			--w;
-		if (((int(y) - 64) - 1) >= 1)
-			--y0;
-		else
-			--h;
-		int x2 = x0 - 1, y2 = y0 - 1;
+		h = type;
+		int x2 = x0 + 1, y2 = y0 + 1;
 		for (int i = 0; i < h; ++i, ++y2)
-		{
-			for (int j = 0; j < w; ++j, ++x2)
-			{
-				if (player->Get_vec1()[x2][y2] != " ")
-					res = true;
-				if (player->Get_vec1()[x2 + 1][y2] == "|")
-					++x2;
-			}
-			x2 = x0 - 1;
-			if (player->Get_vec1()[x2][y2 + 1] == "-")
-				++y2;
-		}
+			if (player->Get_vec1()[x2][y2] != " ")
+				res = true;
 	}
 	if (res)
 		return true;

@@ -29,6 +29,9 @@ vector<vector<string>> Player::Get_vec1()
 	return this->sea1;
 }
 
-void Player::Add(Ship* ship){} //
+void Player::Add(Ship* ship)
+{
+	ship->Add_Ship();
+}
 
 Player::~Player(){}
