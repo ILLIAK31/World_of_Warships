@@ -47,7 +47,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		char y;
 		if ((menu == 1)&&(count_4x != 0))
 		{
-			cout << "\n\tGive symbol (but without # and _ ) : ";
+			cout << "\n\tGive 1-character symbol (but without # and _ ) : ";
 			cin >> symbol;
 			if (player->Check_val_sym(symbol))
 				continue;

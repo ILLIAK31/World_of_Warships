@@ -37,7 +37,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 						player->Get_vec1()[y2][x2] = "_";
 					else
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 				}
@@ -47,7 +47,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 						player->Get_vec1()[y2][x2] = "_";
 					else
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 				}
@@ -59,7 +59,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 						player->Get_vec1()[y2][x2] = "_";
 					else
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 				}
@@ -69,7 +69,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 						player->Get_vec1()[y2][x2] = "_";
 					else
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 				}
@@ -106,7 +106,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 				{
 					if (j == 0)
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
@@ -116,7 +116,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 				{
 					if (j == 1)
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
@@ -126,7 +126,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 				{
 					if (j == 0)
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
@@ -136,7 +136,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 				{
 					if (j == 1)
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
@@ -148,7 +148,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 						player->Get_vec1()[y2][x2] = "_";
 					else
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 				}
@@ -158,7 +158,7 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 						player->Get_vec1()[y2][x2] = "_";
 					else
 					{
-						player->Get_vec1()[y2][x2] = to_string(player->Get_Count());
+						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 				}
