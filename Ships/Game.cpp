@@ -94,7 +94,9 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 				continue;
 			Ship_3x* ship = new Ship_3x(symbol, rotation, color, x, y);
 			player->Add(ship, player);
-			//
+			data1.push_back(ship);
+			--count_ships;
+			--count_3x;
 		}
 		else if ((menu == 3) && (count_2x != 0))
 		{
