@@ -9,6 +9,7 @@ private:
 	string color , rotation , symbol;
 	int x;
 	char y;
+	bool damaged;
 public:
 	Ship(const string symbol,const string rotation,const string color,const int x , const char y);
 	virtual void Add_Ship(Ship* ship,Player* player);

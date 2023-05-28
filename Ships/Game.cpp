@@ -48,7 +48,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		char y;
 		if ((menu == 1)&&(count_4x != 0))
 		{
-			cout << "\n\tGive 1-character symbol (but without # and _ ) : ";
+			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
 			cin >> symbol;
 			if (player->Check_val_sym(symbol))
 				continue;
@@ -74,7 +74,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		}
 		else if ((menu == 2) && (count_3x != 0))
 		{
-			cout << "\n\tGive 1-character symbol (but without # and _ ) : ";
+			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
 			cin >> symbol;
 			if (player->Check_val_sym(symbol))
 				continue;
@@ -116,7 +116,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 
 bool Game::Check_val_sym(const string sym)
 {
-	if ((sym == "#") || (sym.size() > 1) || (sym == "_"))
+	if ((sym == "#") || (sym.size() > 1) || (sym == "_") || (sym == "X"))
 	{
 		cout << "\n\tWrong symbol\n\n";
 		return true;

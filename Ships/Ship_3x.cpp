@@ -30,11 +30,11 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 			for (int j = 0; j < w; ++j, ++x2)
 			{
 				if ((i == 0) && (h == 3) && ((w == 5) || (w == 4)))
-					player->Get_vec1()[y2][x2] = "_";
+					player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				else if ((i == 1) && (h == 3) && (w == 5))
 				{
 					if ((j == 0) || (j == 4))
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 					else
 					{
 						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
@@ -44,7 +44,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 				else if ((i == 1) && (h == 3) && (w == 4))
 				{
 					if (j == 3)
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 					else
 					{
 						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
@@ -52,11 +52,11 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 					}
 				}
 				else if ((i == 2) && (h == 3) && ((w == 5) || (w == 4)))
-					player->Get_vec1()[y2][x2] = "_";
+					player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				else if ((i == 0) && (h == 2) && (w == 4))
 				{
 					if (j == 3)
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 					else
 					{
 						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
@@ -66,7 +66,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 				else if ((i == 0) && (h == 2) && (w == 5))
 				{
 					if ((j == 0) || (j == 4))
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 					else
 					{
 						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
@@ -74,7 +74,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 					}
 				}
 				else if ((i == 1) && (h == 2) && ((w == 4) || (w == 5)))
-					player->Get_vec1()[y2][x2] = "_";
+					player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				if (player->Get_vec1()[y2][x2 + 1] == "|")
 					++j;
 			}
@@ -101,7 +101,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 			for (int j = 0; j < w; ++j, ++x2)
 			{
 				if ((i == 0) && ((w == 3) || (w == 2)) && (h == 5))
-					player->Get_vec1()[y2][x2] = "_";
+					player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				else if ((i == 0) && (w == 2) && (h == 4))
 				{
 					if (j == 0)
@@ -110,7 +110,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				}
 				else if ((i == 0) && (w == 3) && (h == 4))
 				{
@@ -120,7 +120,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				}
 				else if ((h == 4) && (i != 3) && (w == 2))
 				{
@@ -130,7 +130,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				}
 				else if ((h == 4) && (i != 3) && (w == 3))
 				{
@@ -140,12 +140,12 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 						pos[count++] = (to_string(y2 - 2) + to_string(x2 - 2));
 					}
 					else
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				}
 				else if ((h == 5) && ((i != 4) && (i != 0)) && (w == 2))
 				{
 					if (j == 1)
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 					else
 					{
 						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
@@ -155,7 +155,7 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 				else if ((h == 5) && ((i != 4) && (i != 0)) && (w == 3))
 				{
 					if ((j == 2) || (j == 0))
-						player->Get_vec1()[y2][x2] = "_";
+						player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 					else
 					{
 						player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
@@ -163,9 +163,9 @@ void Ship_3x::Add_Ship(Ship* ship, Player* player)
 					}
 				}
 				else if ((i == 3) && (h == 4))
-					player->Get_vec1()[y2][x2] = "_";
+					player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				else if ((i == 4) && (h == 5))
-					player->Get_vec1()[y2][x2] = "_";
+					player->Get_vec1()[y2][x2] = ".." + to_string(player->Get_Count());
 				if (player->Get_vec1()[y2][x2 + 1] == "|")
 					++j;
 			}
