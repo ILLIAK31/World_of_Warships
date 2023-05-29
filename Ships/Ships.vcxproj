@@ -132,6 +132,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Ship_2x.cpp" />
     <ClCompile Include="Ship_3x.cpp" />
     <ClCompile Include="Ship_4x.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Ship.hpp" />
+    <ClInclude Include="Ship_2x.hpp" />
     <ClInclude Include="Ship_3x.hpp" />
     <ClInclude Include="Ship_4x.hpp" />
   </ItemGroup>

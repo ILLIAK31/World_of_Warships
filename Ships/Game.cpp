@@ -8,6 +8,7 @@ using namespace std;
 #include "Player.hpp"
 #include "Ship_4x.hpp"
 #include "Ship_3x.hpp"
+#include "Ship_2x.hpp"
 
 void Game::Start(Player* player,vector<Ship*>& data1)
 {
@@ -100,7 +101,29 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		}
 		else if ((menu == 3) && (count_2x != 0))
 		{
-			//
+			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
+			cin >> symbol;
+			if (player->Check_val_sym(symbol))
+				continue;
+			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
+			cin >> rotation;
+			if (player->Check_val_rot(rotation))
+				continue;
+			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
+			cin >> color;
+			if (player->Check_val_col(color))
+				continue;
+			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
+			cin >> y;
+			cout << "\n\tGive position of ship (1...10) : ";
+			cin >> x;
+			if (player->Check_val_xy(x, y, 2, rotation, player))
+				continue;
+			Ship_2x* ship = new Ship_2x(symbol, rotation, color, x, y);
+			player->Add(ship, player);
+			data1.push_back(ship);
+			--count_ships;
+			--count_2x;
 		}
 		else if ((menu == 4) && (count_x != 0))
 		{
