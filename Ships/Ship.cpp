@@ -20,6 +20,7 @@ Ship::Ship(const string symbol,const string rotation,const string color,const in
 		this->color = "35m";
 	else if (color == "White")
 		this->color = "37m";
+	damaged = false;
 }
 
 void Ship::Add_Ship(Ship* ship,Player* player){}
