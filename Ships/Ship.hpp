@@ -13,6 +13,7 @@ private:
 public:
 	Ship(const string symbol,const string rotation,const string color,const int x , const char y);
 	virtual void Add_Ship(Ship* ship,Player* player);
+	virtual void Add_Ship_Bot(Ship* ship, Bot* bot);
 	string Get_color();
 	string Get_rotation();
 	string Get_symbol();

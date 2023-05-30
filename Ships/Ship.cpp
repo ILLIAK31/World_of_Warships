@@ -25,6 +25,8 @@ Ship::Ship(const string symbol,const string rotation,const string color,const in
 
 void Ship::Add_Ship(Ship* ship,Player* player){}
 
+void Ship::Add_Ship_Bot(Ship* ship, Bot* bot){}
+
 string Ship::Get_color()
 {
 	return this->color;

@@ -176,4 +176,9 @@ void Ship_4x::Add_Ship(Ship* ship,Player* player)
 	}
 }
 
+void Ship_4x::Add_Ship_Bot(Ship* ship, Bot* bot)
+{
+	//
+}
+
 Ship_4x::~Ship_4x(){}

@@ -16,7 +16,7 @@ vector<vector<string>>& Bot::Get_vec2()
 
 void Bot::Add_Bot(Ship* ship, Bot* bot)
 {
-	ship->Add_Ship(ship, bot);
+	ship->Add_Ship_Bot(ship, bot);
 }
 
 void Bot::Random(int& num1, int& num2, int& num3, int& num4)
