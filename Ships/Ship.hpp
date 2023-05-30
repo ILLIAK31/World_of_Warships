@@ -18,5 +18,5 @@ public:
 	string Get_symbol();
 	int Get_x();
 	char Get_y();
-	~Ship();
+	virtual ~Ship();
 };

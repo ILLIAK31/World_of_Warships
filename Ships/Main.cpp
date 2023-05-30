@@ -20,8 +20,10 @@ int main()
 {
     Game game;
     Player* player = new Player();
-    vector<Ship*> data1;
+	Bot* bot = new Bot();
+    vector<Ship*> data1 , data2;
     game.Start(player,data1);
+	game.Start_Bot(bot, data2);
     return 0;
 }
 

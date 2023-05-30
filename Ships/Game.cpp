@@ -1,13 +1,15 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
-#include <fstream>
+#include <chrono>
+#include <thread>
+#include <random>
 
 using namespace std;
 
 #include "Game.hpp"
 #include "Player.hpp"
+#include "Bot.hpp"
 #include "Ship_4x.hpp"
 #include "Ship_3x.hpp"
 #include "Ship_2x.hpp"
@@ -91,7 +93,41 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			continue;
 		}
 	} while (count_ships != 0);
-	//cout << "))))))))";
+	cout << endl;
+	print(player, data1);
+	cout << endl;
+}
+
+
+void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
+{
+	count_ships = 10;
+	count_4x = 1;
+	count_3x = 2;
+	count_2x = 3;
+	count_x = 4;
+	string colors[6] = { "Red", "Blue", "Green", "Yellow","Purple", "White" };
+	string rotations[2] = { "V","G" };
+	string color, symbol, rotation;
+	int x , random_number1 , random_number2 , random_number3;
+	char ys[10] = { 'A','B','C','D','E','F','G','H','I','J'};
+	char y;
+	cout << "Bot is creating his sea (please wait few seconds....)" << endl;
+	this_thread::sleep_for(chrono::seconds(3));
+	do
+	{
+		bot->Random(x, random_number1, random_number2, random_number3);
+		color = colors[random_number2 - 1];
+		rotation = rotations[random_number3 - 1];
+		y = ys[random_number1 - 1];
+		if(Enter_data2(bot, symbol, rotation, color, x, y, 4))
+			continue;
+		Ship_4x* ship = new Ship_4x(symbol, rotation, color, x, y);
+		bot->Add_Bot(ship, bot);
+		data2.push_back(ship);
+		--count_ships;
+		--count_4x;
+	} while (count_ships != 0);
 }
 
 bool Game::Check_val_sym(const string sym)
@@ -101,6 +137,13 @@ bool Game::Check_val_sym(const string sym)
 		cout << "\n\tWrong symbol\n\n";
 		return true;
 	}
+	return false;
+}
+
+bool Game::Check_val_sym2(const string sym)
+{
+	if ((sym == "#") || (sym.size() > 1) || (sym == "_") || (sym == "X"))
+		return true;
 	return false;
 }
 
@@ -167,6 +210,35 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 	return false;
 }
 
+bool Game::Check_val_xy2(const int x, const char y, int type, const string rot, Bot* bot)
+{
+	bool res = false;
+	int x0 = x, y0 = int(y) - 64, h, w;
+	if (rot == "G")
+	{
+		if ((x < 1) || ((int(y) - 64) < 1) || (x > 10) || ((int(y) - 64) > 10) || (((x + type) - 1) > 10))
+			return true;
+		w = type;
+		int x2 = x0 + 1, y2 = y0 + 1;
+		for (int i = 0; i < w; ++i, ++x2)
+			if (bot->Get_vec2()[y2][x2] != " ")
+				res = true;
+	}
+	else
+	{
+		if ((x < 1) || ((int(y) - 64) < 1) || (x > 10) || ((int(y) - 64) > 10) || (((int(y) - 65) + type) > 10))
+			return true;
+		h = type;
+		int x2 = x0 + 1, y2 = y0 + 1;
+		for (int i = 0; i < h; ++i, ++y2)
+			if (bot->Get_vec2()[y2][x2] != " ")
+				res = true;
+	}
+	if (res)
+		return true;
+	return false;
+}
+
 bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& color, int& x, char& y,int type)
 {
 	cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
@@ -186,6 +258,15 @@ bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& c
 	cout << "\n\tGive position of ship (1...10) : ";
 	cin >> x;
 	if (player->Check_val_xy(x, y,type, rotation, player))
+		return true;
+	return false;
+}
+
+bool Game::Enter_data2(Bot* bot, string& symbol, string& rotation, string& color, int& x, char& y, int type)
+{
+	if (bot->Check_val_sym(symbol))
+		return true;
+	if (bot->Check_val_xy2(x, y, type, rotation,bot))
 		return true;
 	return false;
 }
