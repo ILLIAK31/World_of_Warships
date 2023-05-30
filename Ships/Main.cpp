@@ -15,6 +15,7 @@ int Game::count_3x = 2;
 int Game::count_2x = 3;
 int Game::count_x = 4;
 int Player::count_player_ship = 0;
+int Bot::count_player_ship2 = 0;
 
 int main()
 {

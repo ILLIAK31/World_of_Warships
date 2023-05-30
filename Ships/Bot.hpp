@@ -8,10 +8,12 @@ class Bot : public Game
 private:
 	friend class Ship;
 	vector<vector<string>> sea2;
+	static int count_player_ship2;
 public:
 	Bot();
 	vector<vector<string>>& Get_vec2();
 	void Add_Bot(Ship* ship, Bot* bot);
 	void Random(int& num1 , int& num2 , int& num3,int& num4);
+	int& Get_Count2();
 	~Bot();
 };

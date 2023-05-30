@@ -108,26 +108,28 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 	count_x = 4;
 	string colors[6] = { "Red", "Blue", "Green", "Yellow","Purple", "White" };
 	string rotations[2] = { "V","G" };
-	string color, symbol, rotation;
+	string color, symbol = "!", rotation;
 	int x , random_number1 , random_number2 , random_number3;
 	char ys[10] = { 'A','B','C','D','E','F','G','H','I','J'};
 	char y;
 	cout << "Bot is creating his sea (please wait few seconds....)" << endl;
 	this_thread::sleep_for(chrono::seconds(3));
+	//
 	do
 	{
 		bot->Random(x, random_number1, random_number2, random_number3);
 		color = colors[random_number2 - 1];
 		rotation = rotations[random_number3 - 1];
 		y = ys[random_number1 - 1];
-		if(Enter_data2(bot, symbol, rotation, color, x, y, 4))
+		if(Enter_data2(bot,symbol, rotation, color, x, y, 4))
 			continue;
 		Ship_4x* ship = new Ship_4x(symbol, rotation, color, x, y);
 		bot->Add_Bot(ship, bot);
 		data2.push_back(ship);
 		--count_ships;
 		--count_4x;
-	} while (count_ships != 0);
+	} while (count_ships != 9);
+	//
 }
 
 bool Game::Check_val_sym(const string sym)
@@ -264,7 +266,7 @@ bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& c
 
 bool Game::Enter_data2(Bot* bot, string& symbol, string& rotation, string& color, int& x, char& y, int type)
 {
-	if (bot->Check_val_sym(symbol))
+	if (bot->Check_val_sym2(symbol))
 		return true;
 	if (bot->Check_val_xy2(x, y, type, rotation,bot))
 		return true;
