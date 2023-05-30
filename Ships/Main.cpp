@@ -27,21 +27,11 @@ int main()
 
 
 
-			/*
-			cout << data1[0]->Get_color() << data1[0]->Get_symbol();
-			for (const auto row : player->Get_vec1()) {
-				for (const auto element : row)
-				{
-					if (element == " ")
-						cout << " ";
-					else if (element == ".1")
-						cout << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
-					else if (element[1] == '.')
-						cout << "_";
-					else
-						cout << element;
-
-				}
-				cout << endl;
-			}
-			}*/
+/*
+cout << endl;
+		for (const auto row : player->Get_vec1()) {
+			for (const auto element : row)
+				cout << element;
+			cout << endl;
+		}
+*/

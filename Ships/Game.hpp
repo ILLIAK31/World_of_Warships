@@ -13,5 +13,7 @@ public:
 	bool Check_val_rot(const string rot);
 	bool Check_val_col(const string col);
 	bool Check_val_xy(const int x, const char y,int type,const string rot, Player* player);
+	bool Enter_data(Player* player,string& symbol, string& rotation, string& color,int& x, char& y,int type);
+	void print(Player* player, vector<Ship*> data1);
 	virtual ~Game();
 };

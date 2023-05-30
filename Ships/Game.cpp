@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -17,12 +19,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 	int menu;
 	do 
 	{
-		cout << endl;
-		for (const auto row : player->Get_vec1()) {
-			for (const auto element : row)
-				cout << element;
-			cout << endl;
-		}
+		print(player, data1);
 		cout << "\n\n\tAdd ";
 		if (count_4x != 0)
 			cout << "\033[1;32m" << count_4x << "\033[0m";
@@ -50,23 +47,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		char y;
 		if ((menu == 1)&&(count_4x != 0))
 		{
-			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
-			cin >> symbol;
-			if (player->Check_val_sym(symbol))
-				continue;
-			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
-			cin >> rotation;
-			if (player->Check_val_rot(rotation))
-				continue;
-			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
-			cin >> color;
-			if (player->Check_val_col(color))
-				continue;
-			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
-			cin >> y;
-			cout << "\n\tGive position of ship (1...10) : ";
-			cin >> x;
-			if (player->Check_val_xy(x,y,4,rotation,player))
+			if (Enter_data(player,symbol,rotation,color,x,y,4))
 				continue;
 			Ship_4x* ship = new Ship_4x(symbol,rotation,color,x,y);
 			player->Add(ship,player);
@@ -76,23 +57,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		}
 		else if ((menu == 2) && (count_3x != 0))
 		{
-			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
-			cin >> symbol;
-			if (player->Check_val_sym(symbol))
-				continue;
-			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
-			cin >> rotation;
-			if (player->Check_val_rot(rotation))
-				continue;
-			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
-			cin >> color;
-			if (player->Check_val_col(color))
-				continue;
-			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
-			cin >> y;
-			cout << "\n\tGive position of ship (1...10) : ";
-			cin >> x;
-			if (player->Check_val_xy(x, y, 3, rotation, player))
+			if (Enter_data(player, symbol, rotation, color, x, y, 3))
 				continue;
 			Ship_3x* ship = new Ship_3x(symbol, rotation, color, x, y);
 			player->Add(ship, player);
@@ -102,23 +67,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		}
 		else if ((menu == 3) && (count_2x != 0))
 		{
-			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
-			cin >> symbol;
-			if (player->Check_val_sym(symbol))
-				continue;
-			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
-			cin >> rotation;
-			if (player->Check_val_rot(rotation))
-				continue;
-			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
-			cin >> color;
-			if (player->Check_val_col(color))
-				continue;
-			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
-			cin >> y;
-			cout << "\n\tGive position of ship (1...10) : ";
-			cin >> x;
-			if (player->Check_val_xy(x, y, 2, rotation, player))
+			if (Enter_data(player, symbol, rotation, color, x, y, 2))
 				continue;
 			Ship_2x* ship = new Ship_2x(symbol, rotation, color, x, y);
 			player->Add(ship, player);
@@ -128,23 +77,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		}
 		else if ((menu == 4) && (count_x != 0))
 		{
-			cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
-			cin >> symbol;
-			if (player->Check_val_sym(symbol))
-				continue;
-			cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
-			cin >> rotation;
-			if (player->Check_val_rot(rotation))
-				continue;
-			cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
-			cin >> color;
-			if (player->Check_val_col(color))
-				continue;
-			cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
-			cin >> y;
-			cout << "\n\tGive position of ship (1...10) : ";
-			cin >> x;
-			if (player->Check_val_xy(x, y, 1, rotation, player))
+			if (Enter_data(player, symbol, rotation, color, x, y, 1))
 				continue;
 			Ship_1x* ship = new Ship_1x(symbol, rotation, color, x, y);
 			player->Add(ship, player);
@@ -158,6 +91,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			continue;
 		}
 	} while (count_ships != 0);
+	//cout << "))))))))";
 }
 
 bool Game::Check_val_sym(const string sym)
@@ -201,6 +135,11 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 	int x0 = x, y0 = int(y)-64 , h , w;
 	if(rot == "G")
 	{
+		if ((x < 1) || ((int(y) - 64) < 1) || (x > 10) || ((int(y) - 64) > 10) || (((x + type)-1) > 10))
+		{
+			cout << "\n\tWrong x or y\n\n";
+			return true;
+		}
 		w = type;
 		int x2 = x0 + 1, y2 = y0 + 1;
 		for (int i = 0; i < w; ++i,++x2)
@@ -209,6 +148,11 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 	}
 	else
 	{
+		if ((x < 1) || ((int(y) - 64) < 1) || (x > 10) || ((int(y) - 64) > 10) || (((int(y)-65) + type) > 10))
+		{
+			cout << "\n\tWrong x or y\n\n";
+			return true;
+		}
 		h = type;
 		int x2 = x0 + 1, y2 = y0 + 1;
 		for (int i = 0; i < h; ++i, ++y2)
@@ -216,8 +160,56 @@ bool Game::Check_val_xy(const int x, const char y,int type, const string rot,Pla
 				res = true;
 	}
 	if (res)
+	{
+		cout << "\n\tWrong x or y\n\n";
+		return true;
+	}
+	return false;
+}
+
+bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& color, int& x, char& y,int type)
+{
+	cout << "\n\tGive 1-character symbol (but without # , X and _ ) : ";
+	cin >> symbol;
+	if (player->Check_val_sym(symbol))
+		return true;
+	cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
+	cin >> rotation;
+	if (player->Check_val_rot(rotation))
+		return true;
+	cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
+	cin >> color;
+	if (player->Check_val_col(color))
+		return true;
+	cout << "\n\tGive position of ship (A,B,C,D,E,F,G,H,I,J) : ";
+	cin >> y;
+	cout << "\n\tGive position of ship (1...10) : ";
+	cin >> x;
+	if (player->Check_val_xy(x, y,type, rotation, player))
 		return true;
 	return false;
+}
+
+void Game::print(Player* player, vector<Ship*> data1)
+{
+	cout << endl;
+	for (const auto row : player->Get_vec1()) {
+		for (const auto element : row)
+		{
+			if (element.size() > 1)
+			{
+				if ((element[1] == '.') && (element.size() > 2))
+					cout << " ";
+				else if ((element[1] != '.')&&(element[0] == '.'))
+					cout << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
+				else
+					cout << element;
+			}
+			else
+				cout << element;
+		}
+		cout << endl;
+	}
 }
 
 Game::~Game(){}
