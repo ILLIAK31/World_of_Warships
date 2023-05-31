@@ -108,28 +108,73 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 	count_x = 4;
 	string colors[6] = { "Red", "Blue", "Green", "Yellow","Purple", "White" };
 	string rotations[2] = { "V","G" };
-	string color, symbol = "!", rotation;
+	string color , rotation;
+	string symbols[4] = {"!","@","$","%"};
 	int x , random_number1 , random_number2 , random_number3;
 	char ys[10] = { 'A','B','C','D','E','F','G','H','I','J'};
 	char y;
 	cout << "Bot is creating his sea (please wait few seconds....)" << endl;
 	this_thread::sleep_for(chrono::seconds(3));
-	//
 	do
 	{
 		bot->Random(x, random_number1, random_number2, random_number3);
 		color = colors[random_number2 - 1];
 		rotation = rotations[random_number3 - 1];
 		y = ys[random_number1 - 1];
-		if(Enter_data2(bot,symbol, rotation, color, x, y, 4))
+		if(Enter_data2(bot,symbols[0], rotation, color, x, y, 4))
 			continue;
-		Ship_4x* ship = new Ship_4x(symbol, rotation, color, x, y);
+		Ship_4x* ship = new Ship_4x(symbols[0], rotation, color, x, y);
 		bot->Add_Bot(ship, bot);
 		data2.push_back(ship);
 		--count_ships;
 		--count_4x;
-	} while (count_ships != 9);
-	//
+		for (int i = 0; i < 2;)
+		{
+			bot->Random(x, random_number1, random_number2, random_number3);
+			color = colors[random_number2 - 1];
+			rotation = rotations[random_number3 - 1];
+			y = ys[random_number1 - 1];
+			if (Enter_data2(bot, symbols[1], rotation, color, x, y, 3))
+				continue;
+			Ship_3x* ship = new Ship_3x(symbols[1], rotation, color, x, y);
+			bot->Add_Bot(ship, bot);
+			data2.push_back(ship);
+			--count_ships;
+			--count_3x; 
+			++i;
+		}
+		for (int i = 0; i < 3;)
+		{
+			bot->Random(x, random_number1, random_number2, random_number3);
+			color = colors[random_number2 - 1];
+			rotation = rotations[random_number3 - 1];
+			y = ys[random_number1 - 1];
+			if (Enter_data2(bot, symbols[2], rotation, color, x, y, 2))
+				continue;
+			Ship_2x* ship = new Ship_2x(symbols[2], rotation, color, x, y);
+			bot->Add_Bot(ship, bot);
+			data2.push_back(ship);
+			--count_ships;
+			--count_2x;
+			++i;
+		}
+		for (int i = 0; i < 4;)
+		{
+			bot->Random(x, random_number1, random_number2, random_number3);
+			color = colors[random_number2 - 1];
+			rotation = rotations[random_number3 - 1];
+			y = ys[random_number1 - 1];
+			if (Enter_data2(bot, symbols[3], rotation, color, x, y, 1))
+				continue;
+			Ship_1x* ship = new Ship_1x(symbols[3],rotation,color,x,y);
+			bot->Add_Bot(ship, bot);
+			data2.push_back(ship);
+			--count_ships;
+			--count_x;
+			++i;
+		}
+	} while (count_ships != 0);
+	cout << endl << "Bot created his sea" << endl << endl;
 }
 
 bool Game::Check_val_sym(const string sym)
