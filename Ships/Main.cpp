@@ -17,6 +17,8 @@ int Game::count_x = 4;
 int Player::count_player_ship = 0;
 int Bot::count_player_ship2 = 0;
 
+void Delete_All(Player* player,Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2);
+
 int main()
 {
     Game game;
@@ -25,7 +27,24 @@ int main()
     vector<Ship*> data1 , data2;
     game.Start(player,data1);
 	game.Start_Bot(bot, data2);
+	Delete_All(player, bot,data1,data2);
     return 0;
+}
+
+void Delete_All(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2)
+{
+	delete player;
+	delete bot;
+	for (auto& obj : data1)
+	{
+		delete obj;
+		obj = nullptr;
+	}
+	for (auto& obj : data2)
+	{
+		delete obj;
+		obj = nullptr;
+	}
 }
 
 /*
