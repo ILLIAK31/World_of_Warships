@@ -56,6 +56,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			data1.push_back(ship);
 			--count_ships;
 			--count_4x;
+			ship = nullptr;
 		}
 		else if ((menu == 2) && (count_3x != 0))
 		{
@@ -66,6 +67,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			data1.push_back(ship);
 			--count_ships;
 			--count_3x;
+			ship = nullptr;
 		}
 		else if ((menu == 3) && (count_2x != 0))
 		{
@@ -76,6 +78,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			data1.push_back(ship);
 			--count_ships;
 			--count_2x;
+			ship = nullptr;
 		}
 		else if ((menu == 4) && (count_x != 0))
 		{
@@ -86,6 +89,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			data1.push_back(ship);
 			--count_ships;
 			--count_x;
+			ship = nullptr;
 		}
 		else
 		{
@@ -128,6 +132,7 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 		data2.push_back(ship);
 		--count_ships;
 		--count_4x;
+		ship = nullptr;
 		for (int i = 0; i < 2;)
 		{
 			bot->Random(x, random_number1, random_number2, random_number3);
@@ -142,6 +147,7 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 			--count_ships;
 			--count_3x; 
 			++i;
+			ship = nullptr;
 		}
 		for (int i = 0; i < 3;)
 		{
@@ -157,6 +163,7 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 			--count_ships;
 			--count_2x;
 			++i;
+			ship = nullptr;
 		}
 		for (int i = 0; i < 4;)
 		{
@@ -172,6 +179,7 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 			--count_ships;
 			--count_x;
 			++i;
+			ship = nullptr;
 		}
 	} while (count_ships != 0);
 	cout << endl << "Bot created his sea" << endl << endl;
@@ -292,8 +300,13 @@ bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& c
 	cin >> symbol;
 	if (player->Check_val_sym(symbol))
 		return true;
-	cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
-	cin >> rotation;
+	if (type == 1)
+		rotation = "V";
+	else
+	{
+		cout << "\n\tGive rotation (V - Verticale or G - Gorizontal) : ";
+		cin >> rotation;
+	}
 	if (player->Check_val_rot(rotation))
 		return true;
 	cout << "\n\tEnter color(Red, Blue, Green, Yellow, Purple, White) : ";
