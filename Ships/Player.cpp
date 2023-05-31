@@ -77,4 +77,9 @@ void Player::Print(vector<Ship*> data1)
 	std::cout << "\033[0m";
 }
 
-Player::~Player(){}
+Player::~Player()
+{
+	for (auto& row : sea1)
+		row.clear();
+	sea1.clear();
+}

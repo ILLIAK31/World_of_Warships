@@ -52,4 +52,9 @@ int& Bot::Get_Count2()
 	return this->count_player_ship2;
 }
 
-Bot::~Bot(){}
+Bot::~Bot()
+{
+	for (auto& row : sea2)
+		row.clear();
+	sea2.clear();
+}
