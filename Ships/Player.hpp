@@ -14,5 +14,6 @@ public:
 	vector<vector<string>>& Get_vec1();
 	void Add(Ship* ship,Player* player);
 	int& Get_Count();
+	void Print(vector<Ship*> data1);
 	~Player();
 };

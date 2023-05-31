@@ -21,7 +21,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 	int menu;
 	do 
 	{
-		print(player, data1);
+		player->Print(data1);
 		cout << "\n\n\tAdd ";
 		if (count_4x != 0)
 			cout << "\033[1;32m" << count_4x << "\033[0m";
@@ -94,7 +94,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 		}
 	} while (count_ships != 0);
 	cout << endl;
-	print(player, data1);
+	player->Print(data1);
 	cout << endl;
 }
 
@@ -271,28 +271,6 @@ bool Game::Enter_data2(Bot* bot, string& symbol, string& rotation, string& color
 	if (bot->Check_val_xy2(x, y, type, rotation,bot))
 		return true;
 	return false;
-}
-
-void Game::print(Player* player, vector<Ship*> data1)
-{
-	cout << endl;
-	for (const auto row : player->Get_vec1()) {
-		for (const auto element : row)
-		{
-			if (element.size() > 1)
-			{
-				if ((element[1] == '.') && (element.size() > 2))
-					cout << " ";
-				else if ((element[1] != '.')&&(element[0] == '.'))
-					cout << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
-				else
-					cout << element;
-			}
-			else
-				cout << element;
-		}
-		cout << endl;
-	}
 }
 
 Game::~Game(){}

@@ -18,7 +18,6 @@ public:
 	bool Check_val_xy2(const int x, const char y, int type, const string rot, Bot* bot);
 	bool Enter_data(Player* player,string& symbol, string& rotation, string& color,int& x, char& y,int type);
 	bool Enter_data2(Bot* bot, string& symbol, string& rotation, string& color, int& x, char& y, int type);
-	void print(Player* player, vector<Ship*> data1);
 	void Start_Bot(Bot* bot, vector<Ship*>& data2);
 	virtual ~Game();
 };
