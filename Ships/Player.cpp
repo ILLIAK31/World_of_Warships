@@ -101,7 +101,6 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 	else
 	{
 		bool res = true;
-		//
 		if ((bot->Get_vec2()[int(y) - 63][x + 1].size() > 1) && (bot->Get_vec2()[int(y) - 63][x + 1][0] == '.') && (bot->Get_vec2()[int(y) - 63][x + 1][1] != '.'))
 		{
 			bot->Get_vec2()[int(y) - 63][x + 1] = "X";
