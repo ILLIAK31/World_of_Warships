@@ -66,7 +66,7 @@ void Bot::Print(vector<Ship*> data2)
 				if ((element == "X")||(element == "#"))
 					cout << color << "\033[1;31m" << element << "\033[0m";
 				else
-					cout << color << element << "\033[0m";
+					cout << color << " " << "\033[0m";
 			}
 			else
 				cout << element;
