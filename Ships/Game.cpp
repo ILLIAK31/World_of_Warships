@@ -209,7 +209,7 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 
 void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2)
 {
-	cout << "\tGame will start in" << endl;
+	cout << "\n\tGame will start in" << endl;
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "\t3\n";
 	this_thread::sleep_for(chrono::seconds(1));
@@ -224,7 +224,14 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 			if (player->Player_Go(bot,data1,data2))
 				continue;
 			else
+			{
+				cout << "\n\tYour map\n";
+				player->Print(data1);
+				cout << "\n\n\tBot map\n";
+				bot->Print(data2);
+				cout << endl;
 				cout << "\n\tWrong\n";
+			}
 			break;
 		}
 		//

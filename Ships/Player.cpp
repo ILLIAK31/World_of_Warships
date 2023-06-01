@@ -55,7 +55,7 @@ void Player::Print(vector<Ship*> data1)
 				{
 					if ((element[1] == '.') && (element.size() > 2))
 					{
-						if(data1[(int(element[1])) - 49]->Get_Damaged() == true)
+						if (data1[(int(element[2])) - 49]->Get_Damaged() == true)
 							cout << color << "\033[1;31m"<<"#" << "\033[0m";
 						else
 							cout << color << " " << "\033[0m";
@@ -102,27 +102,37 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 	{
 		bool res = true;
 		//
-		bot->Get_vec2()[int(y) - 64][x + 1] = "X";
-		for (auto& obj : data2)
+		if ((bot->Get_vec2()[int(y) - 63][x + 1].size() > 1) && (bot->Get_vec2()[int(y) - 63][x + 1][0] == '.') && (bot->Get_vec2()[int(y) - 63][x + 1][1] != '.'))
 		{
-			for (int i = 0; obj->pos[i] != ""; ++i)
+			bot->Get_vec2()[int(y) - 63][x + 1] = "X";
+			for (auto& obj : data2)
 			{
-				if ((int(obj->pos[i][0]) == int(y) - 66) && (int(obj->pos[i][1]) == x - 1))
+				for (int i = 0; obj->pos[i] != ""; ++i)
 				{
-					else
+					if ((int(obj->pos[i][0]) == int(y) - 65) && (int(obj->pos[i][1]) == x - 1))
 					{
 						obj->pos[i] = "X";
 						break;
-					}
-				    if (obj->pos[i] != "X")
-						res = false;
-					if (res == true)
-					{
-						obj->Get_Damaged() = true;
-						--bot->Get_Count2();
+						for (int j = 0; obj->pos[j] != ""; ++j)
+						{
+							if (obj->pos[j] != "X")
+								res = false;
+						}
+						if (res == true)
+						{
+							obj->Get_Damaged() = true;
+							--bot->Get_Count2();
+						}
+						break;
 					}
 				}
 			}
+			return true;
+		}
+		else
+		{
+			bot->Get_vec2()[int(y) - 63][x + 1] = "#";
+			return false;
 		}
 	}
 	cout << "\n\tYour map\n";
@@ -134,7 +144,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 
 bool Player::Check(Bot* bot ,const int x , const int y)
 {
-	return ((x>10)||(x<1)||(int(y)-65 >10)||(int(y)-65 < 1)||(bot->Get_vec2()[int(y)-64][x+1] == "#")||(bot->Get_vec2()[int(y) - 64][x + 1] == "X")) ? true : false;
+	return ((x>10)||(x<1)||(int(y)-64 >10)||(int(y)-64 < 1)||(bot->Get_vec2()[int(y)-64][x+1] == "#")||(bot->Get_vec2()[int(y) - 64][x + 1] == "X")) ? true : false;
 }
 
 Player::~Player()
