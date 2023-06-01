@@ -43,7 +43,7 @@ int& Player::Get_Count()
 void Player::Print(vector<Ship*> data1)
 {
 	int x = 0, y = 0 , index;
-	string colors[2] = { "\033[46m","\033[104m" };
+	string colors[2] = { "\033[46m","\033[100m" };
 	cout << endl;
 	for_each(this->Get_vec1().begin(), this->Get_vec1().end(),[data1, &x, &y, &index, &colors](const vector<string>& row){for_each(row.begin(), row.end(), [data1, &x, &y, &index, &colors](const string& element)
 	{
@@ -86,6 +86,7 @@ bool Player::Player_Go(vector<Ship*>& data1, vector<Ship*>& data2)
 	cout << "\tEnter y : ";
 	cin >> y;
 	//
+	return false;
 }
 
 Player::~Player()
