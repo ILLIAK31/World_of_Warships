@@ -19,5 +19,7 @@ public:
 	string Get_symbol();
 	int Get_x();
 	char Get_y();
+	string pos[5];
+	bool& Get_Damaged();
 	virtual ~Ship();
 };

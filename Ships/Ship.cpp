@@ -52,4 +52,9 @@ char Ship::Get_y()
 	return this->y;
 }
 
+bool& Ship::Get_Damaged()
+{
+	return this->damaged;
+}
+
 Ship::~Ship(){}

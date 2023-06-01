@@ -52,6 +52,34 @@ int& Bot::Get_Count2()
 	return this->count_player_ship2;
 }
 
+void Bot::Print(vector<Ship*> data2)
+{
+	int x = 0, y = 0, index;
+	string colors[2] = { "\033[46m","\033[100m" };
+	cout << endl;
+	for_each(this->Get_vec2().begin(), this->Get_vec2().end(), [data2, &x, &y, &index, &colors](const vector<string>& row) {for_each(row.begin(), row.end(), [data2, &x, &y, &index, &colors](const string& element)
+	{
+			if ((x > 1) && (x < 12) && (y > 1) && (y < 12))
+			{
+				index = ((x % 2 == 0) && (y % 2 == 0)) ? 0 : (((x % 2 != 0) && (y % 2 != 0))) ? 0 : 1;
+				string color = colors[index];
+				if ((element == "X")||(element == "#"))
+					cout << color << "\033[1;31m" << element << "\033[0m";
+				else
+					cout << color << element << "\033[0m";
+			}
+			else
+				cout << element;
+			++x;
+			if (x >= 13)
+				x = 0;
+		});
+	cout << std::endl;
+	++y;
+	});
+	cout << "\033[0m";
+}
+
 Bot::~Bot()
 {
 	for (auto& row : sea2)

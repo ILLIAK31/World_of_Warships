@@ -15,5 +15,6 @@ public:
 	void Add_Bot(Ship* ship, Bot* bot);
 	void Random(int& num1 , int& num2 , int& num3,int& num4);
 	int& Get_Count2();
+	void Print(vector<Ship*> data2);
 	~Bot();
 };

@@ -219,10 +219,14 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 	this_thread::sleep_for(chrono::seconds(1));
 	do
 	{
-		if (player->Player_Go(data1,data2))
-			continue;
-		else
-			cout << "\n\tWrong\n";
+		while (true)
+		{
+			if (player->Player_Go(bot,data1,data2))
+				continue;
+			else
+				cout << "\n\tWrong\n";
+			break;
+		}
 		//
 	} while ((player->Get_Count() != 0)||(bot->Get_Count2() != 0));
 }

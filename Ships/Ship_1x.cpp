@@ -36,7 +36,7 @@ void Ship_1x::Add_Ship(Ship* ship, Player* player)
 				else
 				{
 					player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 1) && (h == 3) && (w == 2))
@@ -46,7 +46,7 @@ void Ship_1x::Add_Ship(Ship* ship, Player* player)
 				else
 				{
 					player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 2) && (h == 3) && ((w == 3) || (w == 2)))
@@ -58,7 +58,7 @@ void Ship_1x::Add_Ship(Ship* ship, Player* player)
 				else
 				{
 					player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 0) && (h == 2) && (w == 3))
@@ -68,7 +68,7 @@ void Ship_1x::Add_Ship(Ship* ship, Player* player)
 				else
 				{
 					player->Get_vec1()[y2][x2] = "." + to_string(player->Get_Count());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 				}
 			else if ((i == 1) && (h == 2) && ((w == 3) || (w == 2)))
@@ -110,7 +110,7 @@ void Ship_1x::Add_Ship_Bot(Ship* ship, Bot* bot)
 				else
 				{
 					bot->Get_vec2()[y2][x2] = "." + to_string(bot->Get_Count2());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 1) && (h == 3) && (w == 2))
@@ -120,7 +120,7 @@ void Ship_1x::Add_Ship_Bot(Ship* ship, Bot* bot)
 				else
 				{
 					bot->Get_vec2()[y2][x2] = "." + to_string(bot->Get_Count2());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 2) && (h == 3) && ((w == 3) || (w == 2)))
@@ -132,7 +132,7 @@ void Ship_1x::Add_Ship_Bot(Ship* ship, Bot* bot)
 				else
 				{
 					bot->Get_vec2()[y2][x2] = "." + to_string(bot->Get_Count2());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 0) && (h == 2) && (w == 3))
@@ -142,7 +142,7 @@ void Ship_1x::Add_Ship_Bot(Ship* ship, Bot* bot)
 				else
 				{
 					bot->Get_vec2()[y2][x2] = "." + to_string(bot->Get_Count2());
-					pos = (to_string(y2 - 2) + to_string(x2 - 2));
+					pos[0] = (to_string(y2 - 2) + to_string(x2 - 2));
 				}
 			}
 			else if ((i == 1) && (h == 2) && ((w == 3) || (w == 2)))

@@ -55,7 +55,10 @@ void Player::Print(vector<Ship*> data1)
 				{
 					if ((element[1] == '.') && (element.size() > 2))
 					{
-						cout << color << " " << "\033[0m";;
+						if(data1[(int(element[1])) - 49]->Get_Damaged() == true)
+							cout << color << "\033[1;31m"<<"#" << "\033[0m";
+						else
+							cout << color << " " << "\033[0m";
 					}
 					else if ((element[1] != '.') && (element[0] == '.'))
 						cout << color << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
@@ -63,7 +66,12 @@ void Player::Print(vector<Ship*> data1)
 						cout << color << element << "\033[0m";
 				}
 				else
-					cout << color << element << "\033[0m";
+				{
+					if((element == "X")||(element == "#"))
+						cout << color << "\033[1;31m" << element << "\033[0m";
+					else
+						cout << color << element << "\033[0m";
+				}
 			}
 			else
 				cout << element;
@@ -74,10 +82,10 @@ void Player::Print(vector<Ship*> data1)
 	cout << std::endl;
 	++y;
 	});
-	std::cout << "\033[0m";
+	cout << "\033[0m";
 }
 
-bool Player::Player_Go(vector<Ship*>& data1, vector<Ship*>& data2)
+bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 {
 	int x;
 	char y;
@@ -85,8 +93,48 @@ bool Player::Player_Go(vector<Ship*>& data1, vector<Ship*>& data2)
 	cin >> x;
 	cout << "\tEnter y : ";
 	cin >> y;
-	//
-	return false;
+	if (Check(bot,x, y))
+	{
+		cout << "\n\tWrong\n";
+		return true;
+	}
+	else
+	{
+		bool res = true;
+		//
+		bot->Get_vec2()[int(y) - 64][x + 1] = "X";
+		for (auto& obj : data2)
+		{
+			for (int i = 0; obj->pos[i] != ""; ++i)
+			{
+				if ((int(obj->pos[i][0]) == int(y) - 66) && (int(obj->pos[i][1]) == x - 1))
+				{
+					else
+					{
+						obj->pos[i] = "X";
+						break;
+					}
+				    if (obj->pos[i] != "X")
+						res = false;
+					if (res == true)
+					{
+						obj->Get_Damaged() = true;
+						--bot->Get_Count2();
+					}
+				}
+			}
+		}
+	}
+	cout << "\n\tYour map\n";
+	this->Print(data1);
+	cout << "\n\n\tBot map\n";
+	bot->Print(data2);
+	cout << endl;
+}
+
+bool Player::Check(Bot* bot ,const int x , const int y)
+{
+	return ((x>10)||(x<1)||(int(y)-65 >10)||(int(y)-65 < 1)||(bot->Get_vec2()[int(y)-64][x+1] == "#")||(bot->Get_vec2()[int(y) - 64][x + 1] == "X")) ? true : false;
 }
 
 Player::~Player()

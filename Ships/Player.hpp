@@ -15,6 +15,7 @@ public:
 	void Add(Ship* ship,Player* player);
 	int& Get_Count();
 	void Print(vector<Ship*> data1);
-	bool Player_Go(vector<Ship*>& data1, vector<Ship*>& data2);
+	bool Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2);
+	bool Check(Bot* bot,const int x , const int y);
 	~Player();
 };
