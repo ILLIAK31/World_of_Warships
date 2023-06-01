@@ -77,6 +77,17 @@ void Player::Print(vector<Ship*> data1)
 	std::cout << "\033[0m";
 }
 
+bool Player::Player_Go(vector<Ship*>& data1, vector<Ship*>& data2)
+{
+	int x;
+	char y;
+	cout << "\n\tYour turn\n\tEnter x : ";
+	cin >> x;
+	cout << "\tEnter y : ";
+	cin >> y;
+	//
+}
+
 Player::~Player()
 {
 	for (auto& row : sea1)

@@ -117,7 +117,7 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 	int x , random_number1 , random_number2 , random_number3;
 	char ys[10] = { 'A','B','C','D','E','F','G','H','I','J'};
 	char y;
-	cout << "Bot is creating his sea (please wait few seconds....)" << endl;
+	cout << "\tBot is creating his sea (please wait few seconds....)" << endl;
 	this_thread::sleep_for(chrono::seconds(3));
 	do
 	{
@@ -182,7 +182,49 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 			ship = nullptr;
 		}
 	} while (count_ships != 0);
-	cout << endl << "Bot created his sea" << endl << endl;
+	cout << endl << "\tBot created his sea" << endl << endl;
+	//
+	for (vector<string> obj : bot->Get_vec2())
+	{
+		for (string x : obj)
+		{
+			if (x.size() > 1)
+			{
+				if ((x[1] == '.') && (x.size() > 2))
+				{
+					cout << " ";
+				}
+				else if ((x[1] != '.') && (x[0] == '.'))
+					cout << "\033[1;" << data2[(int(x[1])) - 49]->Get_color() << data2[(int(x[1])) - 49]->Get_symbol() << "\033[0m";
+				else
+					cout << x;
+			}
+			else
+				cout << x;
+		}
+		cout << endl;
+	}
+	//
+}
+
+void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2)
+{
+	cout << "\tGame will start in" << endl;
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "\t3\n";
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "\t2\n";
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "\t1\n";
+	this_thread::sleep_for(chrono::seconds(1));
+	do
+	{
+		if (player->Player_Go(data1,data2))
+			continue;
+		else
+			cout << "\n\tWrong\n";
+		//
+	} while ((player->Get_Count() != 0)||(bot->Get_Count2() != 0));
 }
 
 bool Game::Check_val_sym(const string sym)

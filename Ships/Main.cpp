@@ -27,6 +27,7 @@ int main()
     vector<Ship*> data1 , data2;
     game.Start(player,data1);
 	game.Start_Bot(bot, data2);
+	game.Battle(player, bot, data1, data2);
 	Delete_All(player, bot,data1,data2);
     return 0;
 }
