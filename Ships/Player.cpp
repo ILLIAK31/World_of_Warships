@@ -96,7 +96,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 	if (Check(bot,x, y))
 	{
 		cout << "\n\tWrong\n";
-		return true;
+		return false;
 	}
 	else
 	{
@@ -108,10 +108,9 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 			{
 				for (int i = 0; obj->pos[i] != ""; ++i)
 				{
-					if ((int(obj->pos[i][0]) == int(y) - 65) && (int(obj->pos[i][1]) == x - 1))
+					if ((int(obj->pos[i][0])-48 == int(y) - 65) && (int(obj->pos[i][1])-48 == x - 1))
 					{
 						obj->pos[i] = "X";
-						break;
 						for (int j = 0; obj->pos[j] != ""; ++j)
 						{
 							if (obj->pos[j] != "X")
@@ -122,6 +121,11 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 							obj->Get_Damaged() = true;
 							--bot->Get_Count2();
 						}
+						cout << "\n\tYour map\n";
+						this->Print(data1);
+						cout << "\n\n\tBot map\n";
+						bot->Print(data2);
+						cout << endl;
 						break;
 					}
 				}
