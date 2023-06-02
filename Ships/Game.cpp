@@ -42,7 +42,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			cout << "\033[1;32m" << count_x << "\033[0m";
 		else
 			cout << "\033[1;31m" << count_x << "\033[0m";
-		cout << " ships of size 1\n" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\tEnter : ";
+		cout << " ships of size 1 " << "or random\n" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\t5.Random\n\n\tEnter : ";
 		cin >> menu;
 		string color, symbol, rotation ;
 		int x;
