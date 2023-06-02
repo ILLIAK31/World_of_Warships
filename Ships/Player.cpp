@@ -101,7 +101,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 	if (Check(bot,x, y))
 	{
 		cout << "\n\tWrong\n";
-		return false;
+		return true;
 	}
 	else
 	{
@@ -152,7 +152,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 
 bool Player::Check(Bot* bot ,const int x , const int y)
 {
-	return ((x>10)||(x<1)||(int(y)-64 >10)||(int(y)-64 < 1)||(bot->Get_vec2()[int(y)-64][x+1] == "#")||(bot->Get_vec2()[int(y) - 64][x + 1] == "X")) ? true : false;
+	return ((x>10)||(x<1)||(int(y)-64 >10)||(int(y)-64 < 1)||(bot->Get_vec2()[int(y)-63][x+1] == "#")||(bot->Get_vec2()[int(y) - 63][x + 1] == "X")) ? true : false;
 }
 
 void Player::Random(Player* player,vector<Ship*>& data1)

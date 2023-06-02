@@ -235,8 +235,13 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 	{
 		while (true)
 		{
-			if (player->Player_Go(bot,data1,data2))
+			if (bot->Get_Count2() == 0)
+				break;
+			if (player->Player_Go(bot, data1, data2))
+			{
+				cout << bot->Get_Count2() << " ";
 				continue;
+			}			
 			else
 			{
 				cout << "\n\tYour map\n";
@@ -249,7 +254,8 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 			break;
 		}
 		//
-	} while ((player->Get_Count() != 0)||(bot->Get_Count2() != 0));
+	} while ((player->Get_Count() != 0)&&(bot->Get_Count2() != 0));
+	//
 }
 
 bool Game::Check_val_sym(const string sym)
