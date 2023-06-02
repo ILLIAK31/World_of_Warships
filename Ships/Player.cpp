@@ -105,6 +105,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 	}
 	else
 	{
+		int index=0;
 		bool res = true;
 		if ((bot->Get_vec2()[int(y) - 63][x + 1].size() > 1) && (bot->Get_vec2()[int(y) - 63][x + 1][0] == '.') && (bot->Get_vec2()[int(y) - 63][x + 1][1] != '.'))
 		{
@@ -115,14 +116,51 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 				{
 					if ((int(obj->pos[i][0])-48 == int(y) - 65) && (int(obj->pos[i][1])-48 == x - 1))
 					{
-						obj->pos[i] = "X";
+						int len=0;
+						for(int k = 0; obj->pos[k] != ""; ++k, ++len){}
+						int w = len+2 , h = 3 , x2 , y2 ,x3;
+						if (obj->pos[0].size() > 2)
+						{
+							x2 = int(obj->pos[0][2]) - 46;
+							y2 = int(obj->pos[0][1]) - 46;
+						}
+						else
+						{
+							x2 = int(obj->pos[0][1]) - 46;
+							y2 = int(obj->pos[0][0]) - 46;
+						}
+						string s = "X";
+						s += obj->pos[i];
+						obj->pos[i] = s;
 						for (int j = 0; obj->pos[j] != ""; ++j)
 						{
-							if (obj->pos[j] != "X")
+							if(obj->pos[j].size()<3)
 								res = false;
 						}
 						if (res == true)
 						{
+							if (obj->Get_rotation() == "V")
+							{
+								w = 3;
+								h = len + 2;
+							}
+							if (x2 - 1 >= 0)
+								--x2;
+							if (y2 - 1 >= 0)
+								--y2;
+							x3 = x2;
+							for (int y0 = 0; y0 < h; ++y0, ++y2)
+							{
+								for (int x0 = 0; x0 < w; ++x0, ++x2)
+								{
+									if (bot->Get_vec2()[y2][x2].size() > 2)
+										if (bot->Get_vec2()[y2][x2][2] != (index + 1))
+										{
+											bot->Get_vec2()[y2][x2] = "#";
+										}
+								}
+								x2 = x3;
+							}
 							obj->Get_Damaged() = true;
 							--bot->Get_Count2();
 						}
@@ -134,6 +172,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 						break;
 					}
 				}
+				++index;
 			}
 			return true;
 		}

@@ -238,10 +238,7 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 			if (bot->Get_Count2() == 0)
 				break;
 			if (player->Player_Go(bot, data1, data2))
-			{
-				cout << bot->Get_Count2() << " ";
 				continue;
-			}			
 			else
 			{
 				cout << "\n\tYour map\n";
