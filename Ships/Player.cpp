@@ -2,11 +2,16 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 
 #include "Player.hpp"
 #include "Ship.hpp"
+#include "Ship_4x.hpp"
+#include "Ship_3x.hpp"
+#include "Ship_2x.hpp"
+#include "Ship_1x.hpp"
 
 Player::Player():sea1(13, vector<string>(13))
 {
@@ -148,6 +153,136 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 bool Player::Check(Bot* bot ,const int x , const int y)
 {
 	return ((x>10)||(x<1)||(int(y)-64 >10)||(int(y)-64 < 1)||(bot->Get_vec2()[int(y)-64][x+1] == "#")||(bot->Get_vec2()[int(y) - 64][x + 1] == "X")) ? true : false;
+}
+
+void Player::Random(Player* player,vector<Ship*>& data1)
+{
+	count_ships = 10;
+	count_4x = 1;
+	count_3x = 2;
+	count_2x = 3;
+	count_x = 4;
+	string colors[6] = { "Red", "Blue", "Green", "Yellow","Purple", "White" };
+	string rotations[2] = { "V","G" };
+	string color, rotation;
+	string symbols[4] = { "!","@","$","%" };
+	int x, random_number1, random_number2, random_number3;
+	char ys[10] = { 'A','B','C','D','E','F','G','H','I','J' };
+	char y;
+	do
+	{
+		player->Random_num(x, random_number1, random_number2, random_number3);
+		color = colors[random_number2 - 1];
+		rotation = rotations[random_number3 - 1];
+		y = ys[random_number1 - 1];
+		if (Enter_data3(player, symbols[0], rotation, color, x, y, 4))
+			continue;
+		Ship_4x* ship = new Ship_4x(symbols[0], rotation, color, x, y);
+		player->Add(ship, player);
+		data1.push_back(ship);
+		--count_ships;
+		--count_4x;
+		ship = nullptr;
+		for (int i = 0; i < 2;)
+		{
+			player->Random_num(x, random_number1, random_number2, random_number3);
+			color = colors[random_number2 - 1];
+			rotation = rotations[random_number3 - 1];
+			y = ys[random_number1 - 1];
+			if (Enter_data3(player, symbols[1], rotation, color, x, y, 3))
+				continue;
+			Ship_3x* ship = new Ship_3x(symbols[1], rotation, color, x, y);
+			player->Add(ship, player);
+			data1.push_back(ship);
+			--count_ships;
+			--count_3x;
+			++i;
+			ship = nullptr;
+		}
+		for (int i = 0; i < 3;)
+		{
+			player->Random_num(x, random_number1, random_number2, random_number3);
+			color = colors[random_number2 - 1];
+			rotation = rotations[random_number3 - 1];
+			y = ys[random_number1 - 1];
+			if (Enter_data3(player, symbols[2], rotation, color, x, y, 2))
+				continue;
+			Ship_2x* ship = new Ship_2x(symbols[2], rotation, color, x, y);
+			player->Add(ship,player);
+			data1.push_back(ship);
+			--count_ships;
+			--count_2x;
+			++i;
+			ship = nullptr;
+		}
+		for (int i = 0; i < 4;)
+		{
+			player->Random_num(x, random_number1, random_number2, random_number3);
+			color = colors[random_number2 - 1];
+			rotation = rotations[random_number3 - 1];
+			y = ys[random_number1 - 1];
+			if (Enter_data3(player, symbols[3], rotation, color, x, y, 1))
+				continue;
+			Ship_1x* ship = new Ship_1x(symbols[3], rotation, color, x, y);
+			player->Add(ship, player);
+			data1.push_back(ship);
+			--count_ships;
+			--count_x;
+			++i;
+			ship = nullptr;
+		}
+	}while (count_ships != 0);
+}
+
+void Player::Random_num(int& num1, int& num2, int& num3, int& num4)
+{
+	random_device rd;
+	mt19937 generator(rd());
+	uniform_int_distribution<int> distribution(1, 10);
+	uniform_int_distribution<int> distribution2(1, 6);
+	uniform_int_distribution<int> distribution3(1, 2);
+	num1 = distribution(generator);
+	num2 = distribution(generator);
+	num3 = distribution2(generator);
+	num4 = distribution3(generator);
+}
+
+bool Player::Enter_data3(Player* player, string& symbol, string& rotation, string& color, int& x, char& y, int type)
+{
+	if (player->Check_val_sym2(symbol))
+		return true;
+	if (player->Check_val_xy3(x, y, type, rotation, player))
+		return true;
+	return false;
+}
+
+bool Player::Check_val_xy3(const int x, const char y, int type, const string rot, Player* player)
+{
+	bool res = false;
+	int x0 = x, y0 = int(y) - 64, h, w;
+	if (rot == "G")
+	{
+		if ((x < 1) || ((int(y) - 64) < 1) || (x > 10) || ((int(y) - 64) > 10) || (((x + type) - 1) > 10))
+			return true;
+		w = type;
+		int x2 = x0 + 1, y2 = y0 + 1;
+		for (int i = 0; i < w; ++i, ++x2)
+			if (player->Get_vec1()[y2][x2] != " ")
+				res = true;
+	}
+	else
+	{
+		if ((x < 1) || ((int(y) - 64) < 1) || (x > 10) || ((int(y) - 64) > 10) || (((int(y) - 65) + type) > 10))
+			return true;
+		h = type;
+		int x2 = x0 + 1, y2 = y0 + 1;
+		for (int i = 0; i < h; ++i, ++y2)
+			if (player->Get_vec1()[y2][x2] != " ")
+				res = true;
+	}
+	if (res)
+		return true;
+	return false;
 }
 
 Player::~Player()

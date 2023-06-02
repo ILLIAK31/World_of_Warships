@@ -3,7 +3,6 @@
 #include <string>
 #include <chrono>
 #include <thread>
-#include <random>
 
 using namespace std;
 
@@ -42,7 +41,7 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			cout << "\033[1;32m" << count_x << "\033[0m";
 		else
 			cout << "\033[1;31m" << count_x << "\033[0m";
-		cout << " ships of size 1 " << "or random\n" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\t5.Random\n\n\tEnter : ";
+		cout << " ships of size 1 " << "or"<< "\033[1;32m" << " Random\n" << "\033[0m" << "\tGive ship :\n\t1. 4x ship\n\t2. 3x ship\n\t3. 2x ship \n\t4. x ship\n\t5. Random\n\n\tEnter : ";
 		cin >> menu;
 		string color, symbol, rotation ;
 		int x;
@@ -90,6 +89,10 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 			--count_ships;
 			--count_x;
 			ship = nullptr;
+		}
+		else if ((menu == 5) && (count_ships == 10))
+		{
+			player->Random(player,data1);
 		}
 		else
 		{
@@ -201,6 +204,15 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 			}
 			else
 				cout << x;
+		}
+		cout << endl;
+	}
+	cout << endl;
+	for (vector<string> obj : bot->Get_vec2())
+	{
+		for (string x : obj)
+		{
+			cout << x;
 		}
 		cout << endl;
 	}
