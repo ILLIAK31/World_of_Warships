@@ -104,17 +104,6 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 	cout << endl;
 	player->Print(data1);
 	cout << endl;
-	//
-	cout << endl;
-	for (vector<string> obj : player->Get_vec1())
-	{
-		for (string x : obj)
-		{
-			cout << x;
-		}
-		cout << endl;
-	}
-	//
 }
 
 
