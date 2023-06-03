@@ -121,6 +121,7 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 		if ((bot->Get_vec2()[int(y) - 63][x + 1].size() > 1) && (bot->Get_vec2()[int(y) - 63][x + 1][0] == '.') && (bot->Get_vec2()[int(y) - 63][x + 1][1] != '.'))
 		{
 			bot->Get_vec2()[int(y) - 63][x + 1] = "X";
+			cout << "\n\tBoom\n";
 			for (auto& obj : data2)
 			{
 				for (int i = 0; obj->pos[i] != ""; ++i)
@@ -175,16 +176,15 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 							obj->Get_Damaged() = true;
 							--bot->Get_Count2();
 						}
-						cout << "\n\tYour map\n";
-						this->Print(data1);
-						cout << "\n\n\tBot map\n";
-						bot->Print(data2);
-						cout << endl;
-						break;
 					}
 				}
 				++index;
 			}
+			cout << "\n\tYour map\n";
+			this->Print(data1);
+			cout << "\n\n\tBot map\n";
+			bot->Print(data2);
+			cout << endl;
 			return true;
 		}
 		else
@@ -193,11 +193,6 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 			return false;
 		}
 	}
-	cout << "\n\tYour map\n";
-	this->Print(data1);
-	cout << "\n\n\tBot map\n";
-	bot->Print(data2);
-	cout << endl;
 }
 
 bool Player::Check(Bot* bot ,const int x , const int y)

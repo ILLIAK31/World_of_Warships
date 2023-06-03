@@ -260,7 +260,7 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 			break;
 		while (true)
 		{
-			this_thread::sleep_for(chrono::seconds(1));
+			this_thread::sleep_for(chrono::seconds(2));
 			if (player->Get_Count() == 0)
 			{
 				cout << "\n\t----- " << "\033[1;31m" << "Wasted" << "\033[0m" << " -----\n";
@@ -279,7 +279,7 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 			}
 			break;
 		}
-	} while ((player->Get_Count() != 0)&&(bot->Get_Count2() != 0));
+	} while ((player->Get_Count() != 0)&&(bot->Get_Count2() != 0)); 
 }
 
 bool Game::Check_val_sym(const string sym)

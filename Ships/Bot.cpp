@@ -108,18 +108,17 @@ bool Bot::Bot_Go(Player* player, vector<Ship*>& data1, vector<Ship*>& data2)
 	this->Random_xy(x,y0);
 	y = ys[y0 - 1];
 	if (this->Check(player, x, y))
-	{
-		cout << "\n\tWrong\n";
 		return true;
-	}
 	else
 	{
+		cout << "\n\tBot is attacking\n";
 		int index = 0;
 		bool res = true;
 		if ((player->Get_vec1()[int(y) - 63][x + 1].size() > 1) && (player->Get_vec1()[int(y) - 63][x + 1][0] == '.') && (player->Get_vec1()[int(y) - 63][x + 1][1] != '.'))
 		{
 			player->Get_vec1()[int(y) - 63][x + 1] = "X";
-			for (auto& obj : data2)
+			cout << "\n\tBoom\n";
+			for (auto& obj : data1)
 			{
 				for (int i = 0; obj->pos[i] != ""; ++i)
 				{
