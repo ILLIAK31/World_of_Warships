@@ -47,26 +47,3 @@ void Delete_All(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>& d
 		obj = nullptr;
 	}
 }
-
-/*
-for (vector<string> obj : bot->Get_vec2())
-	{
-		for (string x : obj)
-		{
-			if(x.size() > 1)
-			{
-				if ((x[1] == '.') && (x.size() > 2))
-				{
-					cout << " ";
-				}
-				else if ((x[1] != '.') && (x[0] == '.'))
-					cout << "\033[1;" << data2[(int(x[1])) - 49]->Get_color() << data2[(int(x[1])) - 49]->Get_symbol() << "\033[0m";
-				else
-					cout << x;
-			}
-			else
-				cout << x;
-		}
-		cout << endl;
-	}
-*/
