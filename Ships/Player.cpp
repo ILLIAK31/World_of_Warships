@@ -56,27 +56,38 @@ void Player::Print(vector<Ship*> data1)
 			{
 				index = ((x % 2 == 0) && (y%2 == 0)) ? 0 : (((x % 2 != 0) && (y % 2 != 0)))?0:1;
 				string color = colors[index];
-				if (element.size() > 1)
+				if (element.size() == 1)
 				{
-					if ((element[1] == '.') && (element.size() > 2))
-					{
-						if (data1[(int(element[2])) - 49]->Get_Damaged() == true)
-							cout << color << "\033[1;31m"<<"#" << "\033[0m";
-						else
-							cout << color << " " << "\033[0m";
-					}
-					else if ((element[1] != '.') && (element[0] == '.'))
-						cout << color << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
-					else
+					if ((element == "X") || (element == "#"))
+						cout << color << "\033[1;31m" << element << "\033[0m";
+					else 
 						cout << color << element << "\033[0m";
+				}
+				else if (element.size() == 2)
+				{
+					if ((element[1] != '.') && (element[0] == '.'))
+						cout << color << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
+				}
+				else if (element.size() == 3)
+				{
+					if (element[1] != '.')
+						cout << color << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
+					else if ((element[1] == '.') && (element[2] == '1') && (data1[9]->Get_Damaged() == true))
+						cout << color << "\033[1;31m" << "#" << "\033[0m";
+					else if ((element[1] == '.') && (data1[(int(element[2])) - 49]->Get_Damaged() == true))
+						cout << color << "\033[1;31m" << "#" << "\033[0m";
+					else
+						cout << color << " " << "\033[0m";
+				}
+				else if (element.size() == 4)
+				{
+					if ((element[1] == '.') && (element[2] == '1') && (data1[9]->Get_Damaged() == true))
+						cout << color << "\033[1;31m" << "#" << "\033[0m";
+					else
+						cout << color << " " << "\033[0m";
 				}
 				else
-				{
-					if((element == "X")||(element == "#"))
-						cout << color << "\033[1;31m" << element << "\033[0m";
-					else
-						cout << color << element << "\033[0m";
-				}
+					cout << color << element <<"\033[0m" ;
 			}
 			else
 				cout << element;

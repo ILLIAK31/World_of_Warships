@@ -16,5 +16,8 @@ public:
 	void Random(int& num1 , int& num2 , int& num3,int& num4);
 	int& Get_Count2();
 	void Print(vector<Ship*> data2);
+	bool Bot_Go(Player* player, vector<Ship*>& data1, vector<Ship*>& data2);
+	void Random_xy(int& num1,int& num2);
+	bool Check(Player* player, const int x, const int y);
 	~Bot();
 };

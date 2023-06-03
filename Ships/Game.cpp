@@ -9,6 +9,7 @@ using namespace std;
 #include "Game.hpp"
 #include "Player.hpp"
 #include "Bot.hpp"
+#include "Ship.hpp"
 #include "Ship_4x.hpp"
 #include "Ship_3x.hpp"
 #include "Ship_2x.hpp"
@@ -103,6 +104,17 @@ void Game::Start(Player* player,vector<Ship*>& data1)
 	cout << endl;
 	player->Print(data1);
 	cout << endl;
+	//
+	cout << endl;
+	for (vector<string> obj : player->Get_vec1())
+	{
+		for (string x : obj)
+		{
+			cout << x;
+		}
+		cout << endl;
+	}
+	//
 }
 
 
@@ -207,15 +219,6 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 		}
 		cout << endl;
 	}
-	cout << endl;
-	for (vector<string> obj : bot->Get_vec2())
-	{
-		for (string x : obj)
-		{
-			cout << x;
-		}
-		cout << endl;
-	}
 	//
 }
 
@@ -237,7 +240,7 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 		{
 			if (bot->Get_Count2() == 0)
 			{
-				cout << "\n\t----- " << "\033[1;34m" << "Win" << "\033[0m" << " -----\n";
+				cout << "\n\t----- " << "\033[1;32m" << "Win" << "\033[0m" << " -----\n";
 				break;
 			}
 			if (player->Player_Go(bot, data1, data2))
@@ -253,7 +256,29 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 			}
 			break;
 		}
-		//
+		if (bot->Get_Count2() == 0)
+			break;
+		while (true)
+		{
+			this_thread::sleep_for(chrono::seconds(1));
+			if (player->Get_Count() == 0)
+			{
+				cout << "\n\t----- " << "\033[1;31m" << "Wasted" << "\033[0m" << " -----\n";
+				break;
+			}
+			if (bot->Bot_Go(player, data1, data2))
+				continue;
+			else
+			{
+				cout << "\n\tYour map\n";
+				player->Print(data1);
+				cout << "\n\n\tBot map\n";
+				bot->Print(data2);
+				cout << endl;
+				cout << "\n\tWrong\n";
+			}
+			break;
+		}
 	} while ((player->Get_Count() != 0)&&(bot->Get_Count2() != 0));
 }
 
