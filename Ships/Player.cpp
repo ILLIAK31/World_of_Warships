@@ -294,7 +294,7 @@ void Player::Random_num(int& num1, int& num2, int& num3, int& num4)
 
 bool Player::Enter_data3(Player* player, string& symbol, string& rotation, string& color, int& x, char& y, int type)
 {
-	if (player->Check_val_sym2(symbol))
+	if ((symbol == "#") || (symbol.size() > 1) || (symbol == "_") || (symbol == "X") ? true : false)
 		return true;
 	if (player->Check_val_xy3(x, y, type, rotation, player))
 		return true;

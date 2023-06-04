@@ -263,8 +263,7 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 				player->Print(data1);
 				cout << "\n\n\tBot map\n";
 				bot->Print(data2);
-				cout << endl;
-				cout << "\n\tWrong\n";
+				cout << endl <<"\n\tWrong\n";
 			}
 			break;
 		}
@@ -283,9 +282,7 @@ void Game::Recreating(Player* player, Bot* bot, vector<Ship*> data1, vector<Ship
 				if (obj.size() == 2)
 				{
 					if ((obj[0] == '.') && (obj[1] != '.'))
-					{
 						player->Get_vec1()[y][x] = data1[(int(obj[1]) - 49)]->Get_symbol();
-					}
 				}
 				else if (obj.size() == 3)
 				{
@@ -321,12 +318,8 @@ void Game::Recreating(Player* player, Bot* bot, vector<Ship*> data1, vector<Ship
 			if ((x > 1) && (x < 12) && (y > 1) && (y < 12))
 			{
 				if (obj.size() == 2)
-				{
 					if ((obj[0] == '.') && (obj[1] != '.'))
-					{
 						bot->Get_vec2()[y][x] = data2[(int(obj[1]) - 49)]->Get_symbol();
-					}
-				}
 				else if (obj.size() == 3)
 				{
 					if (obj[1] == '.')
@@ -362,13 +355,6 @@ bool Game::Check_val_sym(const string sym)
 		cout << "\n\tWrong symbol\n\n";
 		return true;
 	}
-	return false;
-}
-
-bool Game::Check_val_sym2(const string sym)
-{
-	if ((sym == "#") || (sym.size() > 1) || (sym == "_") || (sym == "X"))
-		return true;
 	return false;
 }
 
@@ -459,9 +445,7 @@ bool Game::Check_val_xy2(const int x, const char y, int type, const string rot, 
 			if (bot->Get_vec2()[y2][x2] != " ")
 				res = true;
 	}
-	if (res)
-		return true;
-	return false;
+	return (res) ? true : false;
 }
 
 bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& color, int& x, char& y,int type)
@@ -487,18 +471,14 @@ bool Game::Enter_data(Player* player,string& symbol, string& rotation, string& c
 	cin >> y;
 	cout << "\n\tGive position of ship (1...10) : ";
 	cin >> x;
-	if (player->Check_val_xy(x, y,type, rotation, player))
-		return true;
-	return false;
+	return (player->Check_val_xy(x, y, type, rotation, player)) ? true : false;
 }
 
 bool Game::Enter_data2(Bot* bot, string& symbol, string& rotation, string& color, int& x, char& y, int type)
 {
-	if (bot->Check_val_sym2(symbol))
+	if ((symbol == "#") || (symbol.size() > 1) || (symbol == "_") || (symbol == "X")?true:false)
 		return true;
-	if (bot->Check_val_xy2(x, y, type, rotation,bot))
-		return true;
-	return false;
+	return (bot->Check_val_xy2(x, y, type, rotation, bot)) ? true : false;
 }
 
 Game::~Game(){}
