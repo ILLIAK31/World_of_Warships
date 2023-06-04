@@ -19,6 +19,5 @@ public:
 	bool Enter_data2(Bot* bot, string& symbol, string& rotation, string& color, int& x, char& y, int type);
 	void Start_Bot(Bot* bot, vector<Ship*>& data2);
 	void Battle(Player* player,Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2);
-	void Recreating(Player* player,Bot* bot , vector<Ship*> data1 , vector<Ship*> data2);
 	virtual ~Game();
 };
