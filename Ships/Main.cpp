@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int Player::count_player_ship = 0;
 int Bot::count_player_ship2 = 0;
 
 void Delete_All(Player* player,Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2);
+ofstream& operator<<(ofstream& input, vector<vector<string>> sea1);
 
 int main()
 {
@@ -29,24 +31,15 @@ int main()
 	game.Start_Bot(bot, data2);
 	game.Battle(player, bot, data1, data2);
 	game.Recreating(player, bot, data1, data2);
-	//
-	
-	//
-	//
-	for (auto row : player->Get_vec1())
+	ofstream obj("Results.txt");
+	if (obj.is_open())
 	{
-		for (auto obj : row)
-			cout << obj;
-		cout << endl;
+		obj << "----- Your map -----\n\n";
+		obj << player->Get_vec1();
+		obj << "\n----- Bot map -----\n\n";
+		obj << bot->Get_vec2();
 	}
-	cout << endl;
-	for (auto row : bot->Get_vec2())
-	{
-		for (auto obj : row)
-			cout << obj;
-		cout << endl;
-	}
-	//
+	obj.close();
 	Delete_All(player, bot,data1,data2);
     return 0;
 }
@@ -65,4 +58,15 @@ void Delete_All(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>& d
 		delete obj;
 		obj = nullptr;
 	}
+}
+
+ofstream& operator<<(ofstream& input, const vector<vector<string>> sea)
+{
+	for (auto row : sea)
+	{
+		for (auto obj : row)
+			input << obj;
+		input << endl;
+	}
+	return input;
 }

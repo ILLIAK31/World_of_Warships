@@ -147,6 +147,9 @@
     <ClInclude Include="Ship_3x.hpp" />
     <ClInclude Include="Ship_4x.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Results.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
