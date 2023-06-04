@@ -72,7 +72,7 @@ void Player::Print(vector<Ship*> data1)
 				{
 					if (element[1] != '.')
 						cout << color << "\033[1;" << data1[(int(element[1])) - 49]->Get_color() << data1[(int(element[1])) - 49]->Get_symbol() << "\033[0m";
-					else if ((element[1] == '.') && (element[2] == '1') && (data1[9]->Get_Damaged() == true))
+					else if ((element[1] == '.') && (element[2] == '1') && (data1[0]->Get_Damaged() == true))
 						cout << color << "\033[1;31m" << "#" << "\033[0m";
 					else if ((element[1] == '.') && (data1[(int(element[2])) - 49]->Get_Damaged() == true))
 						cout << color << "\033[1;31m" << "#" << "\033[0m";
