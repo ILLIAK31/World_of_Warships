@@ -28,6 +28,25 @@ int main()
     game.Start(player,data1);
 	game.Start_Bot(bot, data2);
 	game.Battle(player, bot, data1, data2);
+	game.Recreating(player, bot, data1, data2);
+	//
+	
+	//
+	//
+	for (auto row : player->Get_vec1())
+	{
+		for (auto obj : row)
+			cout << obj;
+		cout << endl;
+	}
+	cout << endl;
+	for (auto row : bot->Get_vec2())
+	{
+		for (auto obj : row)
+			cout << obj;
+		cout << endl;
+	}
+	//
 	Delete_All(player, bot,data1,data2);
     return 0;
 }
