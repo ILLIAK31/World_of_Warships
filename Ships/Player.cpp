@@ -125,7 +125,6 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 			for (auto& obj : data2)
 			{
 				for (int i = 0; obj->pos[i] != ""; ++i)
-				{
 					if ((int(obj->pos[i][0])-48 == int(y) - 65) && (int(obj->pos[i][1])-48 == x - 1))
 					{
 						int len=0;
@@ -145,10 +144,8 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 						s += obj->pos[i];
 						obj->pos[i] = s;
 						for (int j = 0; obj->pos[j] != ""; ++j)
-						{
 							if(obj->pos[j].size()<3)
 								res = false;
-						}
 						if (res == true)
 						{
 							if (obj->Get_rotation() == "V")
@@ -164,20 +161,15 @@ bool Player::Player_Go(Bot* bot,vector<Ship*>& data1, vector<Ship*>& data2)
 							for (int y0 = 0; y0 < h; ++y0, ++y2)
 							{
 								for (int x0 = 0; x0 < w; ++x0, ++x2)
-								{
 									if (bot->Get_vec2()[y2][x2].size() > 2)
 										if (bot->Get_vec2()[y2][x2][2] != (index + 1))
-										{
 											bot->Get_vec2()[y2][x2] = "#";
-										}
-								}
 								x2 = x3;
 							}
 							obj->Get_Damaged() = true;
 							--bot->Get_Count2();
 						}
 					}
-				}
 				++index;
 			}
 			cout << "\n\tYour map\n";
@@ -296,9 +288,7 @@ bool Player::Enter_data3(Player* player, string& symbol, string& rotation, strin
 {
 	if ((symbol == "#") || (symbol.size() > 1) || (symbol == "_") || (symbol == "X") ? true : false)
 		return true;
-	if (player->Check_val_xy3(x, y, type, rotation, player))
-		return true;
-	return false;
+	return (player->Check_val_xy3(x, y, type, rotation, player)) ? true : false;
 }
 
 bool Player::Check_val_xy3(const int x, const char y, int type, const string rot, Player* player)

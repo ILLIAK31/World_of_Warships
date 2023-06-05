@@ -12,8 +12,7 @@ void Ship_1x::Add_Ship(Ship* ship, Player* player)
 {
 	++player->Get_Count();
 	int x0 = ship->Get_x(), y0 = int(ship->Get_y()) - 64, h, w, count = 0;
-	h = 3;
-	w = 3;
+	h = w = 3;
 	if ((ship->Get_x() - 1) >= 1)
 		--x0;
 	else
@@ -86,8 +85,7 @@ void Ship_1x::Add_Ship_Bot(Ship* ship, Bot* bot)
 {
 	++bot->Get_Count2();
 	int x0 = ship->Get_x(), y0 = int(ship->Get_y()) - 64, h, w, count = 0;
-	h = 3;
-	w = 3;
+	h = w = 3;
 	if ((ship->Get_x() - 1) >= 1)
 		--x0;
 	else

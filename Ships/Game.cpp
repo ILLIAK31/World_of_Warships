@@ -240,8 +240,7 @@ void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>&
 				player->Print(data1);
 				cout << "\n\n\tBot map\n";
 				bot->Print(data2);
-				cout << endl;
-				cout << "\n\tWrong\n";
+				cout << "\n\n\tWrong\n";
 			}
 			break;
 		}

@@ -121,7 +121,6 @@ bool Bot::Bot_Go(Player* player, vector<Ship*>& data1, vector<Ship*>& data2)
 			for (auto& obj : data1)
 			{
 				for (int i = 0; obj->pos[i] != ""; ++i)
-				{
 					if ((int(obj->pos[i][0]) - 48 == int(y) - 65) && (int(obj->pos[i][1]) - 48 == x - 1))
 					{
 						int len = 0;
@@ -179,7 +178,6 @@ bool Bot::Bot_Go(Player* player, vector<Ship*>& data1, vector<Ship*>& data2)
 						cout << endl;
 						break;
 					}
-				}
 				++index;
 			}
 			return true;
