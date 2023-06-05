@@ -209,6 +209,12 @@ bool Bot::Check(Player* player, const int x, const int y)
 	return ((x > 10) || (x < 1) || (int(y) - 64 > 10) || (int(y) - 64 < 1) || (player->Get_vec1()[int(y) - 63][x + 1] == "#") || (player->Get_vec1()[int(y) - 63][x + 1] == "X")) ? true : false;
 }
 
+Bot& Bot::operator=(const int x)
+{
+	this->Get_Count2() = x;
+	return *this;
+}
+
 Bot::~Bot()
 {
 	for (auto& row : sea2)

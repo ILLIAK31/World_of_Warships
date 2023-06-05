@@ -320,6 +320,12 @@ bool Player::Check_val_xy3(const int x, const char y, int type, const string rot
 	return false;
 }
 
+Player& Player::operator=(const int x)
+{
+	this->Get_Count() = x;
+	return *this;
+}
+
 Player::~Player()
 {
 	for (auto& row : sea1)

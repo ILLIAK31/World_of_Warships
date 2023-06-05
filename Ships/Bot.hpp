@@ -19,5 +19,6 @@ public:
 	bool Bot_Go(Player* player, vector<Ship*>& data1, vector<Ship*>& data2);
 	void Random_xy(int& num1,int& num2);
 	bool Check(Player* player, const int x, const int y);
+	Bot& operator=(const int x);
 	~Bot();
 };

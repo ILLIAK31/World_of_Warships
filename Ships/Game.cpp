@@ -213,8 +213,8 @@ void Game::Start_Bot(Bot* bot, vector<Ship*>& data2)
 
 void Game::Battle(Player* player, Bot* bot, vector<Ship*>& data1, vector<Ship*>& data2)
 {
-	player->Get_Count() = 10;
-	bot->Get_Count2() = 10;
+	*player = 10;
+	*bot = 10;
 	cout << "\n\tGame will start in" << endl;
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "\t3\n";
